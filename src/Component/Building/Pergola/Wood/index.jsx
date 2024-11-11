@@ -1,3 +1,4 @@
+import Pillar from "./Pillar"
 import Roof from "./Roof"
 
 const Wood = () => {
@@ -6,6 +7,7 @@ const Wood = () => {
     return (
         <group>
             <Roof />
+            <Pillar />
         </group>
     )
 }

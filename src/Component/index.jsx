@@ -1,7 +1,8 @@
 import { Canvas } from "@react-three/fiber"
-import Building from "./Building"
-import Env from "./Env"
+
 import ControlPanel from "./ControlPanel"
+import Env from "./Env"
+import Building from "./Building"
 
 const Component = () => {
     return (
@@ -10,8 +11,8 @@ const Component = () => {
             <Canvas
                 shadows
                 dpr={[1, 1.5]}
-                gl={{ antialias: false }}
-                camera={{ position: [0, 20, -150], fov: 30 }}
+                // gl={{ antialias: false }}
+                camera={{ position: [15, 5, -20], fov: 30, near: 1, far: 100000 }}
                 style={{
                     width: "100%",
                     height: "100vh",

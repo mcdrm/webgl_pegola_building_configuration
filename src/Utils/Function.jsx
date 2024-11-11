@@ -12,7 +12,7 @@ export const extrudeSettings = (depth, bevelThickness, bevelSize, bevelOffset, b
     return setting;
 }
 
-export const getDistanceAndCount = (initDistance, length) => {    
+export const getDistanceAndCount = (initDistance, length) => {
     let count, distance = 0;
     
     const tempCount = Math.floor(length / initDistance);
