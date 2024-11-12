@@ -1,14 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo } from 'react'
 
-import { getDistanceAndCount } from '../../../../../Utils/Function';
+import { getDistanceAndCount, textureAnisotropy } from '../../../../../Utils/Function';
 import { ConstProps, ConstWoodPergolaProps } from '../../../../../Utils/Constants';
 import { TrussModel, RectModel } from '../CommonModel';
+import { useThree } from '@react-three/fiber';
+import { useSelector } from 'react-redux';
 
 const { width, length, height, pitch, overhang, freeOverhang, roofAlpha } = ConstProps;
 const { roofBowHeight, pillarSize } = ConstWoodPergolaProps;
 
 const Roof = () => {
+    const { gl } = useThree();
+    const { woodTexture } = useSelector(state => state.texture.textureProps)
+    
+    const woodTopTexture = woodTexture?.clone();
+    textureAnisotropy(gl, woodTopTexture, 1, 1, 0);
+    const woodBaseBowTexture = woodTexture?.clone();
+    textureAnisotropy(gl, woodBaseBowTexture, 1, 1, Math.PI / 2);
+    const trussTexture = woodTexture?.clone();
+    textureAnisotropy(gl, trussTexture, 0.01, 2, 0);
 
     const RectTrussInfoArr_1 = useMemo(() => {
         const { distance, count } = getDistanceAndCount(0.4, width);
@@ -37,10 +48,10 @@ const Roof = () => {
         new Array(2).fill("").forEach((_, index) => {            
             data.push({
                 width: pillarSize,
-                length: roofBowHeight,
+                length: roofBowHeight / 5 * 4,
                 height: length,
                 pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index),
-                pos_y: pillarSize + roofBowHeight / 3 - offset,
+                pos_y: pillarSize + roofBowHeight / 5,
                 pos_z: 0,
                 alpha: [roofAlpha, 0, 0]
             })
@@ -48,10 +59,10 @@ const Roof = () => {
         new Array(2).fill("").forEach((_, index) => {            
             data.push({
                 width: pillarSize,
-                length: roofBowHeight,
+                length: roofBowHeight / 5 * 4,
                 height: width - pillarSize * 2,
                 pos_x: 0,
-                pos_y: index === 0 ? -roofBowHeight / 2 + offset : length / 2 * pitch / 12 + roofBowHeight / 2 - offset,
+                pos_y: index === 0 ? -roofBowHeight / 2.1 + offset : length / 2 * pitch / 12 + roofBowHeight / 2.4,
                 pos_z: (length / 2 - pillarSize / 2) * Math.pow(-1, index),
                 alpha: [0, Math.PI / 2, 0]
             })
@@ -110,11 +121,11 @@ const Roof = () => {
     
     return (
         <group position={[0, height, 0]}>
-            {RectTrussInfoArr_1.map((item, index) => <RectModel key={`rect-top-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.alpha} />)}
-            {RectTrussInfoArr_2.map((item, index) => <RectModel key={`rect-edge-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.alpha} />)}
-            {TrussInfoArr_1.map((item, index) => <TrussModel key={`hor-rail-model-${index}`} modelLength={width} position={[0, item.pos_y, item.pos_z]} />)}
-            {TrussInfoArr_2.map((item, index) => <TrussModel key={`ver-rail-model-${index}`} modelLength={length} position={[item.pos_x, item.pos_y, 0]} rotation_1={item.alpha_local} rotation_2={item.alpha_global} />)}
-            {TrussInfoArr_3.map((item, index) => <TrussModel key={`hor-rail-model-${index}`} modelLength={width} position={[0, item.pos_y, item.pos_z]} />)}
+            {RectTrussInfoArr_1.map((item, index) => <RectModel key={`rect-top-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.alpha} map={woodTopTexture} />)}
+            {RectTrussInfoArr_2.map((item, index) => <RectModel key={`rect-edge-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.alpha} map={woodBaseBowTexture} />)}
+            {TrussInfoArr_1.map((item, index) => <TrussModel key={`hor-rail-model-${index}`} modelLength={width} position={[0, item.pos_y, item.pos_z]} map={trussTexture} />)}
+            {TrussInfoArr_2.map((item, index) => <TrussModel key={`ver-rail-model-${index}`} modelLength={length} position={[item.pos_x, item.pos_y, 0]} rotation_1={item.alpha_local} rotation_2={item.alpha_global} map={trussTexture} />)}
+            {TrussInfoArr_3.map((item, index) => <TrussModel key={`hor-rail-model-${index}`} modelLength={width} position={[0, item.pos_y, item.pos_z]} map={trussTexture} />)}
         </group>
     )
 }

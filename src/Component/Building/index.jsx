@@ -1,10 +1,14 @@
 import { useThree } from "@react-three/fiber"
+import { useEffect } from "react";
+
 import Pergola from "./Pergola"
 import Surface from "./Surface"
-import { useEffect } from "react";
+import { ConstProps } from "../../Utils/Constants";
+import Fence from "./Fence";
 
 const Building = () => {
     const { scene } = useThree();
+    const { height } = ConstProps
     
     useEffect(() => {
         if (scene) {
@@ -18,8 +22,9 @@ const Building = () => {
     }, [scene])
     
     return (
-        <group position={[0, -2, 0]}>
+        <group position={[0, -height / 5 * 2, 0]}>
             <Pergola />
+            <Fence />
             <Surface />
         </group>
     )

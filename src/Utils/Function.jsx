@@ -2,29 +2,27 @@ import { RepeatWrapping, TextureLoader } from "three";
 import { useDispatch } from "react-redux";
 // import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
-import { SurfaceImg, WoodImg } from "./TextureSource";
+import { MarbleImg, MetalImg, StoneWallImg, SurfaceImg, WoodImg } from "./TextureSource";
 import { loadInitTexture } from "../Redux/Features/Texture/textureSlice";
 
-export const InitiallyAssetsLoad = async() => {
+export const InitiallyAssetsLoad = async () => {
     const dispatch = useDispatch();
-    
     const textureLoader = new TextureLoader();
-    // const gltfLoader = new GLTFLoader();
-    
+
     try {
-        const [
-            surfaceTexture,
-            woodTexture,
-        ] = await Promise.all([
+        const [surfaceTexture, woodTexture, marbleTexture, metalTexture, stoneWallTexture] = await Promise.all([
             textureLoader.loadAsync(SurfaceImg),
             textureLoader.loadAsync(WoodImg),
-        ])
-
-        dispatch(loadInitTexture({ surfaceTexture, woodTexture }))
+            textureLoader.loadAsync(MarbleImg),
+            textureLoader.loadAsync(MetalImg),
+            textureLoader.loadAsync(StoneWallImg),
+        ]);
+        
+        dispatch(loadInitTexture({ surfaceTexture, woodTexture, marbleTexture, metalTexture, stoneWallTexture }));
     } catch (error) {
-        console.error('Error loading tetures: ', error);
+        console.error('Error loading texture paths: ', error);
     }
-}
+};
 
 export const extrudeSettings = (depth, bevelThickness, bevelSize, bevelOffset, bevelSegments) => {
     const setting = {

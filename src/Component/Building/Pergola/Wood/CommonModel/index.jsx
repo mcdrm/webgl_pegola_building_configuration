@@ -4,11 +4,10 @@ import { useMemo } from 'react';
 import { extrudeSettings } from '../../../../../Utils/Function';
 import { ConstProps, ConstWoodPergolaProps } from '../../../../../Utils/Constants';
 
-
-const { width, length, overhang, freeOverhang } = ConstProps;
+const { width, length, overhang, freeOverhang, woodColor } = ConstProps;
 const { roofBowHeight, thickness } = ConstWoodPergolaProps;
 
-export const TrussModel = ({ modelLength, position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_2=[0, 0, 0] }) => {
+export const TrussModel = ({ modelLength, position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_2=[0, 0, 0], map=null, bumpScale=0.5, roughness=0.7, metalness=0.3 }) => {
     const model = (size) => {
         
         const m = new THREE.Shape();
@@ -29,10 +28,10 @@ export const TrussModel = ({ modelLength, position=[0, 0, 0], rotation_1=[0, 0, 
     return (
         <group position={position} rotation={rotation_1}>
             <group rotation={rotation_2}>
-                    <mesh position={[0, 0, -thickness / 2]}>
-                        <extrudeGeometry args={[model(modelLength), extrudeSettings(thickness)]} />
-                        <meshStandardMaterial color={'green'} />
-                    </mesh>
+                <mesh position={[0, 0, -thickness / 2]}>
+                    <extrudeGeometry args={[model(modelLength), extrudeSettings(thickness)]} />
+                    <meshStandardMaterial color={woodColor} map={map} bumpMap={map} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
+                </mesh>
             </group>
             <BoltSphereModel dir={rotation_2} />
         </group>
@@ -94,7 +93,7 @@ const BoltSphereModel = ({ dir }) => {
     );
 };
 
-export const PillarCorbelModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_2=[0, 0, 0] }) => {
+export const PillarCorbelModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_2=[0, 0, 0], map=null, bumpScale=0.5, roughness=0.7, metalness=0.3 }) => {
     const model = useMemo(() => {
         const m = new THREE.Shape();
         m.moveTo(0, 0);
@@ -113,19 +112,19 @@ export const PillarCorbelModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], ro
             <group rotation={rotation_2}>
                 <mesh position={[0, 0, -thickness / 2]}>
                     <extrudeGeometry args={[model, extrudeSettings(thickness)]} />
-                    <meshStandardMaterial color={'green'} />
+                    <meshStandardMaterial color={woodColor} map={map} bumpMap={map} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
                 </mesh>
             </group>
         </group>
     )
 }
 
-export const RectModel = ({ modelSize, position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_2=[0, 0, 0] }) => {
+export const RectModel = ({ modelSize, position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_2=[0, 0, 0], map=null, bumpScale=0.5, roughness=0.7, metalness=0.3 }) => {
     return (
         <group name='rect-bow-model' position={position} rotation={rotation_1}>
             <mesh rotation={rotation_2}>
                 <boxGeometry args={modelSize}/>
-                <meshStandardMaterial color={'green'} />
+                <meshStandardMaterial color={woodColor} map={map} bumpMap={map} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
             </mesh>
         </group>
     )

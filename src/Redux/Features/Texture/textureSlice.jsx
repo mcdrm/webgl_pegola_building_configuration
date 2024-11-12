@@ -1,17 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const textureSlice = createSlice({
-    name: 'texture',
-    initialState: {
+const initialState = {
+    textureProps: {
         surfaceTexture: null,
         woodTexture: null,
+        marbleTexture: null,
+        metalTexture: null,
+        stoneWallTexture: null,
     },
+}
+
+export const textureSlice = createSlice({
+    name: 'texture',
+    initialState,
     reducers: {
         loadInitTexture: (state, action) => {
-            console.log('action: ', action);
-            state.surfaceTexture = action.payload.surfaceTexture;
-            state.woodTexture = action.payload.woodTexture;
-        }
+            const { surfaceTexture, woodTexture, marbleTexture, metalTexture, stoneWallTexture } = action.payload;
+            state.textureProps.surfaceTexture = surfaceTexture;
+            state.textureProps.woodTexture = woodTexture;
+            state.textureProps.marbleTexture = marbleTexture;
+            state.textureProps.metalTexture = metalTexture;
+            state.textureProps.stoneWallTexture = stoneWallTexture;
+        },
     }
 })
 
