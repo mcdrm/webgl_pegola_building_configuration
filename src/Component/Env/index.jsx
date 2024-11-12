@@ -13,21 +13,16 @@ const Env = () => {
                 minPolarAngle={0}
                 maxPolarAngle={Infinity}
             />
-            {/* <directionalLight
-                position={[5, 5, 4]}
-                intensity={1}
+            <directionalLight
+                position={[-3, 5, -4]}
+                intensity={3}
                 castShadow
                 shadow-mapSize-height={512}
                 shadow-mapSize-width={512}
                 shadow-camera-far={50}
                 shadow-camera-left={-10}
-            /> */}
-            <directionalLight
-                position={[-3, 8, -10]}
-                intensity={1}
-                castShadow
             />
-            {/* <fogExp2 attach='fog' color={'#E4E4E4'} near={300} far={350} density={0.01} /> */}
+            <directionalLight position={[3, 5, 4]} intensity={2} />
         </>
     )
 }

@@ -1,7 +1,7 @@
 import Pillar from "./Pillar"
 import Roof from "./Roof"
 
-const Wood = () => {
+const WoodPergola = () => {
     
     return (
         <>
@@ -11,4 +11,4 @@ const Wood = () => {
     )
 }
 
-export default Wood
+export default WoodPergola

@@ -1,10 +1,10 @@
 import React from 'react'
-import Wood from './Wood'
+import WoodPergola from './Wood'
 
 const Pergola = () => {
   return (
         <>
-            <Wood />
+            <WoodPergola />
         </>
   )
 }
