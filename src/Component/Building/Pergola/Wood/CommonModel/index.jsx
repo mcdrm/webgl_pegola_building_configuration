@@ -108,7 +108,7 @@ export const PillarCorbelModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], ro
     }, [])
     
     return (
-        <group name='rect-bow-model' position={position} rotation={rotation_1}>
+        <group position={position} rotation={rotation_1}>
             <group rotation={rotation_2}>
                 <mesh position={[0, 0, -thickness / 2]}>
                     <extrudeGeometry args={[model, extrudeSettings(thickness)]} />
@@ -121,7 +121,7 @@ export const PillarCorbelModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], ro
 
 export const RectModel = ({ modelSize, position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_2=[0, 0, 0], map=null, bumpScale=0.5, roughness=0.7, metalness=0.3 }) => {
     return (
-        <group name='rect-bow-model' position={position} rotation={rotation_1}>
+        <group position={position} rotation={rotation_1}>
             <mesh rotation={rotation_2}>
                 <boxGeometry args={modelSize}/>
                 <meshStandardMaterial color={woodColor} map={map} bumpMap={map} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />

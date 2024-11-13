@@ -35,16 +35,16 @@ const Pillar = () => {
             })
         })
 
-        // new Array(2).fill("").forEach((_, index) => {
-        //     data.push({
-        //         width: stonePillarBaseSize,
-        //         length: stonePillarBaseHeight,
-        //         height: stonePillarBaseSize,
-        //         pos_x: (width / 2 - (stonePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index),
-        //         pos_y: height / 3 + stonePillarBaseHeight / 2,
-        //         pos_z: 0,
-        //     })
-        // })
+        new Array(2).fill("").forEach((_, index) => {
+            data.push({
+                width: stonePillarBaseSize,
+                length: stonePillarBaseHeight,
+                height: stonePillarBaseSize,
+                pos_x: (width / 2 - (stonePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index),
+                pos_y: height / 3 + stonePillarBaseHeight / 2,
+                pos_z: 0,
+            })
+        })
 
         return data;
     }, [])
@@ -66,17 +66,17 @@ const Pillar = () => {
             })
         })
         
-        // new Array(2).fill("").forEach((_, index) => {
-        //     data.push({
-        //         width: stonePillarSize,
-        //         length: stonePillarHeight,
-        //         height: stonePillarSize,
-        //         pos_x: (width / 2 - (stonePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index),
-        //         pos_y: height / 3 - stonePillarHeight / 2,
-        //         pos_z: 0,
-        //         rotation_1: [Math.PI / 2, 0, 0],
-        //     })
-        // })
+        new Array(2).fill("").forEach((_, index) => {
+            data.push({
+                width: stonePillarSize,
+                length: stonePillarHeight,
+                height: stonePillarSize,
+                pos_x: (width / 2 - (stonePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index),
+                pos_y: height / 3 - stonePillarHeight / 2,
+                pos_z: 0,
+                rotation_1: [Math.PI / 2, 0, 0],
+            })
+        })
 
         return data;
     }, [])

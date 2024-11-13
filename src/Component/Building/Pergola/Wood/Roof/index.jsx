@@ -28,8 +28,8 @@ const Roof = () => {
         let data = [];
         new Array(count + 1).fill("").forEach((_, index) => {
             data.push({
-                width: 0.05,
-                length: 0.05,
+                width: modelSize,
+                length: modelSize,
                 height: length + overhang + freeOverhang,
                 pos_x: distance * index - width / 2,
                 pos_y: width / 2 *  Math.tan(roofAlpha) + roofBowHeight + modelSize * 2,
@@ -51,7 +51,7 @@ const Roof = () => {
                 length: roofBowHeight / 5 * 4,
                 height: length,
                 pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index),
-                pos_y: pillarSize + roofBowHeight / 5,
+                pos_y: pillarSize,
                 pos_z: 0,
                 alpha: [roofAlpha, 0, 0]
             })

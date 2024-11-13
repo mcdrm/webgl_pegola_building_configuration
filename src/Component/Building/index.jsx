@@ -22,9 +22,10 @@ const Building = () => {
     }, [scene])
     
     return (
-        <group position={[0, -height / 5 * 2, 0]}>
+        // <group position={[0, -height / 5 * 2, 0]}>
+        <group position={[0, 0, 0]} rotation={[0, Math.PI, 0]}>
             <Pergola />
-            <Fence />
+            {/* <Fence /> */}
             <Surface />
         </group>
     )

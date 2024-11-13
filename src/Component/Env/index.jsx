@@ -5,7 +5,8 @@ const Env = () => {
 
     return (
         <>
-            <Environment preset="city" background backgroundBlurriness={1} backgroundIntensity={2} />
+            {/* <Environment preset="park" background backgroundBlurriness={1} ground={{ height: 11, radius: 60, scale: 140 }} /> */}
+            <Environment preset="warehouse" background backgroundBlurriness={1} backgroundIntensity={2} />
             <OrbitControls
                 // enablePan={false}
                 autoRotate={false}
@@ -14,7 +15,7 @@ const Env = () => {
                 maxPolarAngle={Infinity}
             />
             <directionalLight
-                position={[-3, 5, -4]}
+                position={[3, 5, 4]}
                 intensity={3}
                 castShadow
                 shadow-mapSize-height={512}
@@ -22,7 +23,12 @@ const Env = () => {
                 shadow-camera-far={50}
                 shadow-camera-left={-10}
             />
-            <directionalLight position={[3, 5, 4]} intensity={2} />
+            <directionalLight position={[-3, 5, -4]} intensity={2} />
+
+            <directionalLight position={[4, 0, -6]} intensity={0.02} />
+            <directionalLight position={[-4, 0, 6]} intensity={0.02} />
+            <directionalLight position={[-4, 0, 6]} intensity={0.02} />
+            <directionalLight position={[4, 0, -6]} intensity={0.02} />
         </>
     )
 }

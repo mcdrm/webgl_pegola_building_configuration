@@ -28,19 +28,19 @@ const Surface = () => {
             </mesh>
             <mesh position={[-(width / 2 + overhangForPlane/ 2), borderHeight / 2, 0]} rotation={[0, Math.PI / 2, 0]}>
                 <boxGeometry args={[length + overhangForPlane - borderWidth, borderHeight, borderWidth]} />
-                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.7} />
+                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
             <mesh position={[(width / 2 + overhangForPlane/ 2), borderHeight / 2, 0]} rotation={[0, Math.PI / 2, 0]}>
                 <boxGeometry args={[length + overhangForPlane - borderWidth, borderHeight, borderWidth]} />
-                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.7} />
+                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
             <mesh position={[0, 0.05, -(length / 2 + overhangForPlane/ 2)]}>
                 <boxGeometry args={[width + overhangForPlane + borderWidth, borderHeight, borderWidth]} />
-                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.7} />
+                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
             <mesh position={[0, 0.05, (length / 2 + overhangForPlane/ 2)]}>
                 <boxGeometry args={[width + overhangForPlane + borderWidth, borderHeight, borderWidth]} />
-                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.7} />
+                <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
             
             <mesh name='ground-panel' rotation={[-Math.PI / 2, 0, 0]}>

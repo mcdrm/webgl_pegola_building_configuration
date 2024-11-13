@@ -25,14 +25,14 @@ const Pillar = () => {
 
         new Array(2).fill("").forEach((_, index_i) => {
             new Array(2).fill("").forEach((_, index_j) => {
-                if (index_j === 0) pillarHeight = height / 3 * 2 + pillarSize * pitch / 12;
-                else pillarHeight = height / 3 * 2 + length * pitch / 12;
+                if (index_j === 0) pillarHeight = height + pillarSize * pitch / 12;
+                else pillarHeight = height + length * pitch / 12;
                 data.push({
                     width: pillarSize,
                     length: pillarHeight,
                     height: pillarSize,
                     pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index_i),
-                    pos_y: height / 3 + pillarHeight / 2,
+                    pos_y: pillarHeight / 2,
                     pos_z: (length / 2 - pillarSize / 2) * Math.pow(-1, index_j),
                 })
             })
@@ -52,7 +52,7 @@ const Pillar = () => {
                     length: pillarBaseSize,
                     height: modelHeight,
                     pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index_i),
-                    pos_y: height / 3 + modelHeight / 2,
+                    pos_y: modelHeight / 2,
                     pos_z: (length / 2 - pillarSize / 2) * Math.pow(-1, index_j),
                 })
             })

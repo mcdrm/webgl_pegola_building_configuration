@@ -12,7 +12,7 @@ const Component = () => {
                 shadows
                 dpr={[1, 1.5]}
                 // gl={{ antialias: false }}
-                camera={{ position: [10, 3, -15], fov: 30, near: 1, far: 100000 }}
+                camera={{ position: [-10, 3, 15], fov: 30, near: 1, far: 100000 }}
                 style={{
                     width: "100%",
                     height: "100vh",
