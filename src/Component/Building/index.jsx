@@ -3,12 +3,9 @@ import { useEffect } from "react";
 
 import Pergola from "./Pergola"
 import Surface from "./Surface"
-import { ConstProps } from "../../Utils/Constants";
-import Fence from "./Fence";
 
 const Building = () => {
     const { scene } = useThree();
-    const { height } = ConstProps
     
     useEffect(() => {
         if (scene) {
@@ -22,10 +19,8 @@ const Building = () => {
     }, [scene])
     
     return (
-        // <group position={[0, -height / 5 * 2, 0]}>
-        <group position={[0, 0, 0]} rotation={[0, Math.PI, 0]}>
+        <group rotation={[0, Math.PI, 0]}>
             <Pergola />
-            {/* <Fence /> */}
             <Surface />
         </group>
     )
