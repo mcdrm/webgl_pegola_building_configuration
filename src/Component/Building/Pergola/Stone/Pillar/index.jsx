@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react'
-import { ConstFenceProps, ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
-import { RectModel } from '../CommonModel';
-import { useThree } from '@react-three/fiber';
 import { useSelector } from 'react-redux';
+import { useThree } from '@react-three/fiber';
+
+import { ConstFenceProps, ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
 import { textureAnisotropy } from '../../../../../Utils/Function';
+
+import { RectModel } from '../CommonModel';
 
 const { width, length, height } = ConstProps;
 const { stoneFencePillarBaseSize } = ConstFenceProps

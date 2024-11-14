@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux';
+import { useThree } from '@react-three/fiber';
 
 import { ConstProps, ConstWoodPergolaProps } from '../../../../../Utils/Constants';
-import { RectModel, PillarCorbelModel } from '../CommonModel';
-import { useThree } from '@react-three/fiber';
-import { useSelector } from 'react-redux';
 import { textureAnisotropy } from '../../../../../Utils/Function';
+
+import { RectModel, PillarCorbelModel } from '../CommonModel';
 
 const { width, length, height, pitch } = ConstProps;
 const { pillarSize, pillarBaseSize } = ConstWoodPergolaProps;

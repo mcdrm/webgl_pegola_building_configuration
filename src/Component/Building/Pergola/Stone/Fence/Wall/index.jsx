@@ -2,9 +2,10 @@ import React, { useMemo } from 'react'
 import { useThree } from '@react-three/fiber';
 import { useSelector } from 'react-redux';
 
-import { RectModel } from '../CommonModel';
 import { ConstFenceProps, ConstProps, ConstWoodPergolaProps } from '../../../../../../Utils/Constants';
 import { textureAnisotropy } from '../../../../../../Utils/Function';
+
+import { RectModel } from '../CommonModel';
 
 const { width, length, height } = ConstProps;
 const { pillarSize } = ConstWoodPergolaProps

@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react'
-import { ConstMetalPergolaProps, ConstProps } from '../../../../../Utils/Constants';
-import { RectModel, SideBowTrussModel } from '../CommonModel';
-import { useThree } from '@react-three/fiber';
 import { useSelector } from 'react-redux';
+import { useThree } from '@react-three/fiber';
+
+import { ConstMetalPergolaProps, ConstProps } from '../../../../../Utils/Constants';
 import { getDistanceAndCount, textureAnisotropy } from '../../../../../Utils/Function';
+
+import { RectModel, SideBowTrussModel } from '../CommonModel';
 
 const { width, length, height, pitch, roofAlpha } = ConstProps;
 const { pillarSize, pillarGapSize, endRoofBowHeight, sideRoofBowHeight } = ConstMetalPergolaProps;

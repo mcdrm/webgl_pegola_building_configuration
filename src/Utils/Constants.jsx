@@ -37,5 +37,9 @@ export const ConstMetalPergolaProps = {
 export const ConstStonePergolaProps = {
     pillarSize: 0.25,
     pillarHeight: ConstProps.height / 3 * 2,
-    pillarBaseSize: 0.35
+    pillarBaseSize: 0.35,
+    roofUnderBowSize1: 0.3,
+    roofUnderBowSize2: 0.1,
+    roofUpperBowSize1: 0.4,
+    roofUpperBowSize2: 0.2,
 }
