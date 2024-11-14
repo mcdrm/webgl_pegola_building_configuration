@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react'
-import { ConstProps, ConstFenceProps, ConstWoodPergolaProps } from '../../../../Utils/Constants';
-import { RectModel } from '../CommonModel';
 import { useThree } from '@react-three/fiber';
 import { useSelector } from 'react-redux';
-import { textureAnisotropy } from '../../../../Utils/Function';
+
+import { RectModel } from '../CommonModel';
+import { ConstFenceProps, ConstProps, ConstWoodPergolaProps } from '../../../../../../Utils/Constants';
+import { textureAnisotropy } from '../../../../../../Utils/Function';
 
 const { width, length, height } = ConstProps;
 const { pillarSize } = ConstWoodPergolaProps
-const { stonePillarSize, stonePillarHeight, stonePillarBaseHeight } = ConstFenceProps
+const { stoneFencePillarSize, stoneFencePillarHeight, stoneFencePillarBaseHeight } = ConstFenceProps
 
 const Wall = () => {
     const { gl } = useThree();
@@ -20,14 +21,14 @@ const Wall = () => {
 
     const WallModelInfoArr = useMemo(() => {
         let data = [];
-        const modelWidth = stonePillarSize / 7 * 3
-        const modelLength = stonePillarHeight / 3 * 2
+        const modelWidth = stoneFencePillarSize / 7 * 3
+        const modelLength = stoneFencePillarHeight / 3 * 2
 
         new Array(2).fill("").forEach((_, index) => {
             data.push({
                 width: modelWidth,
                 length: modelLength,
-                height: length - stonePillarSize,
+                height: length - stoneFencePillarSize,
                 pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index) ,
                 pos_y: height / 3 - modelLength,
                 pos_z: 0,
@@ -37,7 +38,7 @@ const Wall = () => {
         data.push({
             width: modelWidth,
             length: modelLength,
-            height: width - stonePillarSize,
+            height: width - stoneFencePillarSize,
             pos_x: 0 ,
             pos_y: height / 3 - modelLength,
             pos_z: (length / 2 - pillarSize / 2),
@@ -49,16 +50,16 @@ const Wall = () => {
 
     const WallTopPanelModelInfoArr = useMemo(() => {
         let data = [];
-        const modelWidth = stonePillarSize / 7 * 4
-        const modelLength = stonePillarBaseHeight
+        const modelWidth = stoneFencePillarSize / 7 * 4
+        const modelLength = stoneFencePillarBaseHeight
 
         new Array(2).fill("").forEach((_, index) => {
             data.push({
                 width: modelWidth,
                 length: modelLength,
-                height: length - stonePillarSize,
+                height: length - stoneFencePillarSize,
                 pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index) ,
-                pos_y: stonePillarHeight / 3 * 2,
+                pos_y: stoneFencePillarHeight / 3 * 2,
                 pos_z: 0,
                 rotation_1: [0, 0, 0]
             })
@@ -66,9 +67,9 @@ const Wall = () => {
         data.push({
             width: modelWidth,
             length: modelLength,
-            height: width - stonePillarSize,
+            height: width - stoneFencePillarSize,
             pos_x: 0 ,
-            pos_y: stonePillarHeight / 3 * 2,
+            pos_y: stoneFencePillarHeight / 3 * 2,
             pos_z: (length / 2 - pillarSize / 2),
             rotation_1: [0, Math.PI / 2, 0]
         })
@@ -78,7 +79,7 @@ const Wall = () => {
 
     return (
         <>
-            {WallModelInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.rotation_1} map={wallTexture} bumpScale={0.5} roughness={0.8} metalness={0.1} />)}
+            {WallModelInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.rotation_1} map={wallTexture} bumpScale={0.5} roughness={0.8} metalness={0.8} />)}
             {WallTopPanelModelInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.rotation_1} map={wallTopPanelTexture} bumpScale={0.5} roughness={0.2} metalness={0.3} />)}
         </>
     )
