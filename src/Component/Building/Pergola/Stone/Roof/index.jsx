@@ -8,7 +8,7 @@ import { textureAnisotropy } from '../../../../../Utils/Function';
 import { RectModel } from '../CommonModel';
 
 const { width, length } = ConstProps;
-const { height, pillarSize, pillarBaseSize, pillarHeight, roofUnderBowSize2, roofUnderBowSize1, roofUpperBowSize2, roofUpperBowSize1, stoneFencePillarBaseSize } = ConstStonePergolaProps;
+const { height, pillarSize, roofUnderBowSize2, roofUnderBowSize1, roofUpperBowSize2, roofUpperBowSize1, stoneFencePillarBaseSize } = ConstStonePergolaProps;
 
 const Roof = () => {
     const { gl } = useThree();
