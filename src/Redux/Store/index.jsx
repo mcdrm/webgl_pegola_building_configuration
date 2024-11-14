@@ -9,7 +9,7 @@ const store = configureStore({
       getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: ['texture/loadInitTexture'], // Ignore specific actions if needed
-          ignoredPaths: ['texture.textureProps.surfaceTexture', 'texture.textureProps.woodTexture', 'texture.textureProps.marbleTexture', 'texture.textureProps.metalTexture', 'texture.textureProps.stoneWallTexture'], // Ignore paths with non-serializable values
+          ignoredPaths: ['texture.textureProps.surfaceTexture', 'texture.textureProps.woodTexture1', 'texture.textureProps.woodTexture2', 'texture.textureProps.marbleTexture', 'texture.textureProps.metalTexture', 'texture.textureProps.stoneWallTexture', 'texture.textureProps.grassTexture'], // Ignore paths with non-serializable values
         },
       }),
   });

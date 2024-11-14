@@ -2,7 +2,7 @@ import { RepeatWrapping, TextureLoader } from "three";
 import { useDispatch } from "react-redux";
 // import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
-import { MarbleImg, MetalImg, StoneWallImg, SurfaceImg, WoodImg } from "./TextureSource";
+import { MarbleImg, MetalImg, StoneWallImg, SurfaceImg, WoodImg1, WoodImg2, GrassImg } from "./TextureSource";
 import { loadInitTexture } from "../Redux/Features/Texture/textureSlice";
 
 export const InitiallyAssetsLoad = async () => {
@@ -10,15 +10,17 @@ export const InitiallyAssetsLoad = async () => {
     const textureLoader = new TextureLoader();
 
     try {
-        const [surfaceTexture, woodTexture, marbleTexture, metalTexture, stoneWallTexture] = await Promise.all([
+        const [surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture] = await Promise.all([
             textureLoader.loadAsync(SurfaceImg),
-            textureLoader.loadAsync(WoodImg),
+            textureLoader.loadAsync(WoodImg1),
+            textureLoader.loadAsync(WoodImg2),
             textureLoader.loadAsync(MarbleImg),
             textureLoader.loadAsync(MetalImg),
             textureLoader.loadAsync(StoneWallImg),
+            textureLoader.loadAsync(GrassImg),
         ]);
         
-        dispatch(loadInitTexture({ surfaceTexture, woodTexture, marbleTexture, metalTexture, stoneWallTexture }));
+        dispatch(loadInitTexture({ surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture }));
     } catch (error) {
         console.error('Error loading texture paths: ', error);
     }
@@ -63,6 +65,7 @@ export const textureAnisotropy = (gl, texture, repeatX, repeatY, rotate) => {
         texture.anisotropy = Math.min(gl.capabilities.getMaxAnisotropy(), 50);
         texture.wrapS = texture.wrapT = RepeatWrapping;
         texture.rotation = rotate ? rotate : 0;
-        texture.repeat.set(repeatX, repeatY)
+        texture.repeat.set(repeatX, repeatY);
+        texture.needsUpdate = true;
     }
 }
