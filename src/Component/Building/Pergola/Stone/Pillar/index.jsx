@@ -49,7 +49,6 @@ const Pillar = () => {
 
         return data;
     }, [])
-    console.log('PillarModelInfoArr: ', PillarModelInfoArr);
 
     const PillarBaseModelInfoArr = useMemo(() => {
         let data = [];
