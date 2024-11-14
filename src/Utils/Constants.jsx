@@ -13,10 +13,10 @@ export const ConstProps = {
 }
 
 export const ConstFenceProps = {
-    stonePillarBaseSize: 0.6,
-    stonePillarSize: 0.5,
-    stonePillarHeight: ConstProps.height / 3,
-    stonePillarBaseHeight: 0.03,
+    stoneFencePillarBaseSize: 0.6,
+    stoneFencePillarSize: 0.5,
+    stoneFencePillarHeight: ConstProps.height / 3,
+    stoneFencePillarBaseHeight: 0.03,
 }
 
 export const ConstWoodPergolaProps = {
@@ -32,4 +32,10 @@ export const ConstMetalPergolaProps = {
     pillarBaseSize: 0.35,
     endRoofBowHeight: 0.25,
     sideRoofBowHeight: 0.4,
+}
+
+export const ConstStonePergolaProps = {
+    pillarSize: 0.25,
+    pillarHeight: ConstProps.height / 3 * 2,
+    pillarBaseSize: 0.35
 }
