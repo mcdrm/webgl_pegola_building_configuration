@@ -5,6 +5,8 @@ import MarbleImg from '../Assets/Images/marble.jpg'
 import MetalImg from '../Assets/Images/metal.jpg'
 import StoneWallImg from '../Assets/Images/stone wall.jpg'
 import GrassImg from '../Assets/Images/grass.jpg'
+import RoofPanelTileImage from '../Assets/Images/roof panel.jpg'
+import RoofRidgeTileImage from '../Assets/Images/roof ridge.jpg'
 
 export {
     SurfaceImg,
@@ -13,5 +15,7 @@ export {
     MarbleImg,
     MetalImg,
     StoneWallImg,
-    GrassImg
+    GrassImg,
+    RoofPanelTileImage,
+    RoofRidgeTileImage
 }

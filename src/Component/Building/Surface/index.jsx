@@ -45,7 +45,7 @@ const Surface = () => {
                 <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
             
-            <mesh name='ground-panel' rotation={[-Math.PI / 2, 0, 0]}>
+            <mesh name='grass-ground-panel' rotation={[-Math.PI / 2, 0, 0]}>
                 <circleGeometry args={[600, 60]} />
                 <meshStandardMaterial color={'#ACACAC'} map={grassGroundTexture} bumpMap={grassGroundTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>

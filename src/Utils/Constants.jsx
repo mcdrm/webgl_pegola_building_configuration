@@ -1,9 +1,8 @@
 export const ConstProps = {
     width: 6,
     length: 4,
-    // height: 2.5,
+    height: 2.5,
     // pitch: 1.5,
-    height: 3.5,
     pitch: 1,
     overhang: 0.25,
     freeOverhang: 0.1,
@@ -35,6 +34,10 @@ export const ConstMetalPergolaProps = {
 }
 
 export const ConstStonePergolaProps = {
+    stonePergolaRoofHeight: 1,
+    ridgeCoverTopWidth: 0.1,
+    ridgeCoverSideWidth: 0.1,
+    ridgeCoverSideThickness: 0.025,
     pillarSize: 0.25,
     pillarHeight: ConstProps.height / 3 * 2,
     pillarBaseSize: 0.35,

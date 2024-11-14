@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useThree } from "@react-three/fiber"
+import { Center } from "@react-three/drei";
 
 import Pergola from "./Pergola"
 import Surface from "./Surface"
@@ -19,10 +20,10 @@ const Building = () => {
     }, [scene])
     
     return (
-        <group rotation={[0, Math.PI, 0]}>
+        <Center rotation={[0, Math.PI, 0]}>
             <Pergola />
             <Surface />
-        </group>
+        </Center>
     )
 }
 

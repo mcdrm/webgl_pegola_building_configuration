@@ -5,7 +5,7 @@ import { useThree } from '@react-three/fiber';
 import { ConstFenceProps, ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
 import { textureAnisotropy } from '../../../../../Utils/Function';
 
-import { RectModel } from '../CommonModel';
+import { CoverModel, RectModel } from '../CommonModel';
 
 const { width, length, height } = ConstProps;
 const { pillarSize, roofUnderBowSize2, roofUnderBowSize1, roofUpperBowSize2, roofUpperBowSize1 } = ConstStonePergolaProps;
@@ -13,13 +13,20 @@ const { stoneFencePillarBaseSize } = ConstFenceProps;
 
 const Roof = () => {
     const { gl } = useThree();
-    const { woodTexture2 } = useSelector(state => state.texture.textureProps)
+    const { woodTexture2, roofPanelTileTexture, roofRidgeTileTexture } = useSelector(state => state.texture.textureProps)
     
     const underBowTexture = woodTexture2?.clone();
     textureAnisotropy(gl, underBowTexture, 1, 1, Math.PI / 2);
     const upperBowTexture = woodTexture2?.clone();
-    textureAnisotropy(gl, underBowTexture, 1, 1, Math.PI / 2);
+    textureAnisotropy(gl, upperBowTexture, 1, 1, Math.PI / 2);
     if (upperBowTexture) upperBowTexture.offset.y = 0.5
+    const roofTexture = roofPanelTileTexture?.clone();
+    textureAnisotropy(gl, roofTexture, 0.2, 0.5, 0);
+    const ridgeTexture = roofRidgeTileTexture?.clone();
+    textureAnisotropy(gl, ridgeTexture, 3, 3, 0);
+    if (ridgeTexture) ridgeTexture.offset.x = 0.5
+    const interiorTexture = woodTexture2?.clone();
+    textureAnisotropy(gl, interiorTexture, 0.5, 0.5, Math.PI / 2);
 
     const RoofUnderBowInfoArr = useMemo(() => {
         let data = [];
@@ -85,6 +92,7 @@ const Roof = () => {
         <>
             {RoofUnderBowInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} map={underBowTexture} roughness={0.8} metalness={0.5} />)}
             {RoofUpperBowInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} map={upperBowTexture} roughness={0.8} metalness={0.3} />)}
+            <CoverModel roofMap={roofTexture} ridgeMap={ridgeTexture} interiorMap={interiorTexture} roughness={0.8} metalness={0.3}/>
         </>
     )
 }

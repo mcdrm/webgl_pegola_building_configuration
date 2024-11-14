@@ -20,6 +20,7 @@ const Pillar = () => {
     const stonePillarTexture = stoneWallTexture?.clone();
     textureAnisotropy(gl, stonePillarTexture, 0.35, 1, Math.PI);
     
+    const offset = 0.025;
     const StonePillarBaseModelInfoArr = useMemo(() => {
         let data = [];
 
@@ -29,9 +30,9 @@ const Pillar = () => {
                     width: stoneFencePillarBaseSize,
                     length: stoneFencePillarBaseHeight,
                     height: stoneFencePillarBaseSize,
-                    pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index_i),
+                    pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2 - offset) * Math.pow(-1, index_i),
                     pos_y: height / 3 + stoneFencePillarBaseHeight / 2,
-                    pos_z: (length / 2 - (stoneFencePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index_j),
+                    pos_z: (length / 2 - (stoneFencePillarBaseSize - pillarSize) / 2 - offset) * Math.pow(-1, index_j),
                 })
             })
         })
@@ -41,7 +42,7 @@ const Pillar = () => {
                 width: stoneFencePillarBaseSize,
                 length: stoneFencePillarBaseHeight,
                 height: stoneFencePillarBaseSize,
-                pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index),
+                pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2 - offset) * Math.pow(-1, index),
                 pos_y: height / 3 + stoneFencePillarBaseHeight / 2,
                 pos_z: 0,
             })
@@ -59,9 +60,9 @@ const Pillar = () => {
                     width: stoneFencePillarSize,
                     length: stoneFencePillarHeight,
                     height: stoneFencePillarSize,
-                    pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index_i),
+                    pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2 - offset) * Math.pow(-1, index_i),
                     pos_y: height / 3 - stoneFencePillarHeight / 2,
-                    pos_z: (length / 2 - (stoneFencePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index_j),
+                    pos_z: (length / 2 - (stoneFencePillarBaseSize - pillarSize) / 2 - offset) * Math.pow(-1, index_j),
                     rotation_1: [Math.PI / 2, 0, 0],
                 })
             })
@@ -72,7 +73,7 @@ const Pillar = () => {
                 width: stoneFencePillarSize,
                 length: stoneFencePillarHeight,
                 height: stoneFencePillarSize,
-                pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2) * Math.pow(-1, index),
+                pos_x: (width / 2 - (stoneFencePillarBaseSize - pillarSize) / 2 - offset) * Math.pow(-1, index),
                 pos_y: height / 3 - stoneFencePillarHeight / 2,
                 pos_z: 0,
                 rotation_1: [Math.PI / 2, 0, 0],

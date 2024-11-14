@@ -2,7 +2,7 @@ import { RepeatWrapping, TextureLoader } from "three";
 import { useDispatch } from "react-redux";
 // import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
-import { MarbleImg, MetalImg, StoneWallImg, SurfaceImg, WoodImg1, WoodImg2, GrassImg } from "./TextureSource";
+import { MarbleImg, MetalImg, StoneWallImg, SurfaceImg, WoodImg1, WoodImg2, GrassImg, RoofPanelTileImage, RoofRidgeTileImage } from "./TextureSource";
 import { loadInitTexture } from "../Redux/Features/Texture/textureSlice";
 
 export const InitiallyAssetsLoad = async () => {
@@ -10,7 +10,7 @@ export const InitiallyAssetsLoad = async () => {
     const textureLoader = new TextureLoader();
 
     try {
-        const [surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture] = await Promise.all([
+        const [surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture, roofPanelTileTexture, roofRidgeTileTexture] = await Promise.all([
             textureLoader.loadAsync(SurfaceImg),
             textureLoader.loadAsync(WoodImg1),
             textureLoader.loadAsync(WoodImg2),
@@ -18,9 +18,11 @@ export const InitiallyAssetsLoad = async () => {
             textureLoader.loadAsync(MetalImg),
             textureLoader.loadAsync(StoneWallImg),
             textureLoader.loadAsync(GrassImg),
+            textureLoader.loadAsync(RoofPanelTileImage),
+            textureLoader.loadAsync(RoofRidgeTileImage),
         ]);
         
-        dispatch(loadInitTexture({ surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture }));
+        dispatch(loadInitTexture({ surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture, roofPanelTileTexture, roofRidgeTileTexture }));
     } catch (error) {
         console.error('Error loading texture paths: ', error);
     }

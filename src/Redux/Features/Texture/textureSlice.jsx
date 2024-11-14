@@ -9,6 +9,8 @@ const initialState = {
         metalTexture: null,
         stoneWallTexture: null,
         grassTexture: null,
+        roofPanelTileTexture: null,
+        roofRidgeTileTexture: null,
     },
 }
 
@@ -17,7 +19,7 @@ export const textureSlice = createSlice({
     initialState,
     reducers: {
         loadInitTexture: (state, action) => {
-            const { surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture } = action.payload;
+            const { surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture, roofPanelTileTexture, roofRidgeTileTexture } = action.payload;
             state.textureProps.surfaceTexture = surfaceTexture;
             state.textureProps.woodTexture1 = woodTexture1;
             state.textureProps.woodTexture2 = woodTexture2;
@@ -25,6 +27,8 @@ export const textureSlice = createSlice({
             state.textureProps.metalTexture = metalTexture;
             state.textureProps.stoneWallTexture = stoneWallTexture;
             state.textureProps.grassTexture = grassTexture;
+            state.textureProps.roofPanelTileTexture = roofPanelTileTexture;
+            state.textureProps.roofRidgeTileTexture = roofRidgeTileTexture;
         },
     }
 })

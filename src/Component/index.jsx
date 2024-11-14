@@ -3,9 +3,21 @@ import { Canvas } from "@react-three/fiber"
 import ControlPanel from "./ControlPanel"
 import Env from "./Env"
 import Building from "./Building"
+import { Suspense, useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
 const Component = () => {
-    return (
+    const textureProps = useSelector(state => state.texture.textureProps)
+
+    const [isAllTextureLoaded, setIsAllTextureLoaded] = useState(false)
+    
+    useEffect(() => {
+        if (Object.values(textureProps).some((item) => { return item === null })) {
+            setIsAllTextureLoaded(true)
+        }
+    }, [textureProps])
+
+    return isAllTextureLoaded && (
         <div>
             <ControlPanel />
             <Canvas
@@ -18,8 +30,10 @@ const Component = () => {
                     height: "100vh",
                 }}
             >
-                <Env />
-                <Building />
+                <Suspense>
+                    <Env />
+                    <Building />
+                </Suspense>
             </Canvas>
         </div>
     )

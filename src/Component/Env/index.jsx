@@ -13,7 +13,7 @@ const Env = () => {
             {/* <Environment preset="warehouse" background backgroundBlurriness={1} backgroundIntensity={2} /> */}
             <ambientLight intensity={2} />
             <OrbitControls
-                target={[0, height / 2, 0]}
+                // target={[0, height / 2, 0]}
                 // enablePan={false}
                 autoRotate={false}
                 dampingFactor={0.2}
