@@ -2,13 +2,14 @@ import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux';
 import { useThree } from '@react-three/fiber';
 
-import { ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
+import { ConstFenceProps, ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
 import { textureAnisotropy } from '../../../../../Utils/Function';
 
 import { PillarCorbelModel, RectModel } from '../CommonModel';
 
-const { width, length } = ConstProps;
-const { height, pillarSize, pillarBaseSize, pillarHeight, stoneFencePillarBaseSize } = ConstStonePergolaProps;
+const { width, length, height } = ConstProps;
+const { pillarSize, pillarBaseSize, pillarHeight } = ConstStonePergolaProps;
+const { stoneFencePillarBaseSize } = ConstFenceProps
 
 const Pillar = () => {
     const { gl } = useThree();
@@ -48,6 +49,7 @@ const Pillar = () => {
 
         return data;
     }, [])
+    console.log('PillarModelInfoArr: ', PillarModelInfoArr);
 
     const PillarBaseModelInfoArr = useMemo(() => {
         let data = [];
@@ -127,6 +129,8 @@ const Pillar = () => {
     
     return (
         <>
+        <mesh>
+        </mesh>
             {PillarModelInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} map={pillarTexture} roughness={0.8} metalness={0.3} />)}
             {PillarBaseModelInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} map={pillarTexture} roughness={0.8} metalness={0.7} />)}
             {PillarCorbelModelInfoArr.map((item, index) => <PillarCorbelModel key={`pillar-corbel-model-${index}`} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.rotation_1} map={pillarTexture} roughness={0.8} metalness={0.3} /> )}

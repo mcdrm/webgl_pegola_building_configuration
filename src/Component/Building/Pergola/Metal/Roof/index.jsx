@@ -19,15 +19,15 @@ const Roof = () => {
 
     const endBowTrussTexture = metalTexture?.clone();
     textureAnisotropy(gl, endBowTrussTexture, 0.01, 1, 0);
-    endBowTrussTexture.offset.y = 0.3;
+    if (endBowTrussTexture) endBowTrussTexture.offset.y = 0.3;
 
     const sideBowTrussTexture = metalTexture?.clone();
     textureAnisotropy(gl, sideBowTrussTexture, 0.01, 1, roofAlpha);
-    sideBowTrussTexture.offset.y = 0.5;
+    if (sideBowTrussTexture) sideBowTrussTexture.offset.y = 0.5;
 
     const frontGlassTrimTexture = metalTexture?.clone();
     textureAnisotropy(gl, frontGlassTrimTexture, 0.01, 1, 0);
-    frontGlassTrimTexture.offset.y = 0.1;
+    if (frontGlassTrimTexture) frontGlassTrimTexture.offset.y = 0.1;
 
     const RoofCoverModelInfoArr = useMemo(() => {
         const initDistance = 0.3

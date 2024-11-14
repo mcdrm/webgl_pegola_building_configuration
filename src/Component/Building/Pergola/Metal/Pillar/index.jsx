@@ -16,7 +16,7 @@ const Pillar = () => {
     
     const metalPillarTexture = metalTexture?.clone();
     textureAnisotropy(gl, metalPillarTexture, 0.01, 5, Math.PI / 2);
-    metalPillarTexture.offset.y = 0.3
+    if (metalPillarTexture) metalPillarTexture.offset.y = 0.3
     
     const PillarModelInfoArr = useMemo(() => {
         let data = [];

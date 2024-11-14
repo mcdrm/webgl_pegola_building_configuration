@@ -10,7 +10,8 @@ const Env = () => {
     return (
         <>
             {/* <Environment preset="park" background backgroundBlurriness={1} ground={{ height: 11, radius: 60, scale: 140 }} /> */}
-            <Environment preset="warehouse" background backgroundBlurriness={1} backgroundIntensity={2} />
+            {/* <Environment preset="warehouse" background backgroundBlurriness={1} backgroundIntensity={2} /> */}
+            <ambientLight intensity={2} />
             <OrbitControls
                 target={[0, height / 2, 0]}
                 // enablePan={false}

@@ -2,13 +2,14 @@ import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux';
 import { useThree } from '@react-three/fiber';
 
-import { ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
+import { ConstFenceProps, ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
 import { textureAnisotropy } from '../../../../../Utils/Function';
 
 import { RectModel } from '../CommonModel';
 
-const { width, length } = ConstProps;
-const { height, pillarSize, roofUnderBowSize2, roofUnderBowSize1, roofUpperBowSize2, roofUpperBowSize1, stoneFencePillarBaseSize } = ConstStonePergolaProps;
+const { width, length, height } = ConstProps;
+const { pillarSize, roofUnderBowSize2, roofUnderBowSize1, roofUpperBowSize2, roofUpperBowSize1 } = ConstStonePergolaProps;
+const { stoneFencePillarBaseSize } = ConstFenceProps;
 
 const Roof = () => {
     const { gl } = useThree();
@@ -18,7 +19,7 @@ const Roof = () => {
     textureAnisotropy(gl, underBowTexture, 1, 1, Math.PI / 2);
     const upperBowTexture = woodTexture2?.clone();
     textureAnisotropy(gl, underBowTexture, 1, 1, Math.PI / 2);
-    upperBowTexture.offset.y = 0.5
+    if (upperBowTexture) upperBowTexture.offset.y = 0.5
 
     const RoofUnderBowInfoArr = useMemo(() => {
         let data = [];

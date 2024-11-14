@@ -1,14 +1,15 @@
 import React from 'react'
 
+import Roof from './Roof'
 import Pillar from './Pillar'
 import Fence from './Fence'
-import Roof from './Roof'
+
 
 const StonePergola = () => {
     return (
         <>
-            <Roof />
             <Pillar />
+            <Roof />
             <Fence />
         </>
     )
