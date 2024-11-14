@@ -12,13 +12,13 @@ const { roofBowHeight, pillarSize } = ConstWoodPergolaProps;
 
 const Roof = () => {
     const { gl } = useThree();
-    const { woodTexture } = useSelector(state => state.texture.textureProps)
+    const { woodTexture1 } = useSelector(state => state.texture.textureProps)
     
-    const woodTopTexture = woodTexture?.clone();
+    const woodTopTexture = woodTexture1?.clone();
     textureAnisotropy(gl, woodTopTexture, 1, 1, 0);
-    const woodBaseBowTexture = woodTexture?.clone();
+    const woodBaseBowTexture = woodTexture1?.clone();
     textureAnisotropy(gl, woodBaseBowTexture, 1, 1, Math.PI / 2);
-    const trussTexture = woodTexture?.clone();
+    const trussTexture = woodTexture1?.clone();
     textureAnisotropy(gl, trussTexture, 0.01, 2, 0);
 
     const RectTrussInfoArr_1 = useMemo(() => {

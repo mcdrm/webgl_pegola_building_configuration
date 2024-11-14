@@ -1,4 +1,7 @@
 import { Environment, OrbitControls } from "@react-three/drei"
+import { ConstProps } from "../../Utils/Constants"
+
+const { height } = ConstProps;
 
 const Env = () => {
     // const envHDR = useEnvironment({ files: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/peppermint_powerplant_2_1k.hdr' })
@@ -8,6 +11,7 @@ const Env = () => {
             {/* <Environment preset="park" background backgroundBlurriness={1} ground={{ height: 11, radius: 60, scale: 140 }} /> */}
             <Environment preset="warehouse" background backgroundBlurriness={1} backgroundIntensity={2} />
             <OrbitControls
+                target={[0, height / 2, 0]}
                 // enablePan={false}
                 autoRotate={false}
                 dampingFactor={0.2}

@@ -12,11 +12,11 @@ const { pillarSize, pillarBaseSize } = ConstWoodPergolaProps;
 
 const Pillar = () => {
     const { gl } = useThree();
-    const { woodTexture } = useSelector(state => state.texture.textureProps)
+    const { woodTexture1 } = useSelector(state => state.texture.textureProps)
     
-    const woodPillarTexture = woodTexture?.clone();
+    const woodPillarTexture = woodTexture1?.clone();
     textureAnisotropy(gl, woodPillarTexture, 1, 1, Math.PI / 2);
-    const woodCorbelTexture = woodTexture?.clone();
+    const woodCorbelTexture = woodTexture1?.clone();
     textureAnisotropy(gl, woodCorbelTexture, 1, 1, Math.PI / 2);
     
     const PillarModelInfoArr = useMemo(() => {

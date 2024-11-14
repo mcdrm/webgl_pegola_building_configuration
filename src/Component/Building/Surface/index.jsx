@@ -9,12 +9,14 @@ const { width, length } = ConstProps;
 
 const Surface = () => {
     const { gl } = useThree();
-    const { surfaceTexture } = useSelector(state => state.texture.textureProps)
+    const { surfaceTexture, grassTexture } = useSelector(state => state.texture.textureProps)
     
     const surfaceFloorTexture = surfaceTexture?.clone();
     textureAnisotropy(gl, surfaceFloorTexture, 1, 1, 0);
     const surfaceBorderTexture = surfaceTexture?.clone();
     textureAnisotropy(gl, surfaceBorderTexture, 15, 0.3, 0);
+    const grassGroundTexture = grassTexture?.clone();
+    textureAnisotropy(gl, grassTexture, 500, 500, 0);
     
     const overhangForPlane = 4
     const borderWidth = 0.15;
@@ -45,7 +47,7 @@ const Surface = () => {
             
             <mesh name='ground-panel' rotation={[-Math.PI / 2, 0, 0]}>
                 <circleGeometry args={[600, 60]} />
-                <meshStandardMaterial color={'grey'} />
+                <meshStandardMaterial color={'#ACACAC'} map={grassGroundTexture} bumpMap={grassGroundTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
         </>
     )
