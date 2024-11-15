@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { Base, Geometry, Subtraction } from "@react-three/csg";
 
 import { extrudeSettings } from '../../../../../Utils/Function';
 import { ConstProps, ConstStonePergolaProps } from '../../../../../Utils/Constants';
@@ -85,6 +86,7 @@ export const CoverModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_
     ridgeCoverSideModel.closePath()
 
     const initAngle = Math.PI / 2 - Math.atan(areaSizeL / 2 / sideDst)
+    const ridgeSideCoverGlobalAngle0 = new THREE.Euler(roofCrossAngle, 0, 0, 'XYZ')
     const ridgeSideCoverGlobalAngle1 = new THREE.Euler(0, initAngle, 0, 'XYZ')
     const ridgeSideCoverGlobalAngle2 = new THREE.Euler(0, initAngle + 0.008 + Math.PI / 2, 0, 'XYZ')
     const ridgeSideCoverGlobalAngle3 = new THREE.Euler(0, -initAngle, 0, 'XYZ')
@@ -100,7 +102,6 @@ export const CoverModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_
     ridgeTopCoverModel.quadraticCurveTo(ridgeCoverTopWidth + offset, (ridgeCoverTopWidth + offset) / 2, 0, (ridgeCoverTopWidth + offset) / 3 * 2);
     ridgeTopCoverModel.quadraticCurveTo(-(ridgeCoverTopWidth + offset), (ridgeCoverTopWidth + offset) / 2, -(ridgeCoverTopWidth + offset), 0);
     ridgeTopCoverModel.closePath();
-    
     return (
         <group position={[0, height + 0.12, 0]}>
             <group name='outer-roof-panel'>
@@ -155,32 +156,108 @@ export const CoverModel = ({ position=[0, 0, 0], rotation_1=[0, 0, 0], rotation_
                     </mesh>
                 </group>
             </group>
-            <group name='side-cross-ridge' position={[0, roofHeight + 0.01, 0]}>
-                <group position={[ridgeLength / 2, 0.002, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle1}>
+
+            <group name='ridge-model-group' position={[0, roofHeight + 0.01, 0]}>
+                <group name='B-L-cross-ridge-CSG' position={[ridgeLength / 2, 0.002, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle1}>
+                    <mesh>
+                        <Geometry computeVertexNormals>
+                            <Base rotation={ridgeSideCoverGlobalAngle0}>
+                                <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
+                            </Base>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength + 0.02]} rotation={[0, -initAngle, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#828288'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength - 0.005]} rotation={[0, -initAngle-Math.PI / 2, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#5A5A5D'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                        </Geometry>
+                        <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
+                    </mesh>
+                </group>
+                <group name='F-L-cross-ridge-CSG' position={[ridgeLength / 2, 0, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle2}>
+                    <mesh>
+                        <Geometry computeVertexNormals>
+                            <Base rotation={ridgeSideCoverGlobalAngle0}>
+                                <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
+                            </Base>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength + 0.01]} rotation={[0, -initAngle, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#828288'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength - 0.015]} rotation={[0, -initAngle-Math.PI / 2, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#5A5A5D'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                        </Geometry>
+                        <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
+                    </mesh>
+                </group>
+                <group name='B-R-cross-ridge-CSG' position={[-ridgeLength / 2, 0.002, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle3}>
+                    <mesh>
+                        <Geometry computeVertexNormals>
+                            <Base rotation={ridgeSideCoverGlobalAngle0}>
+                                <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
+                            </Base>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength + 0.01]} rotation={[0, -initAngle, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#828288'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength + 0.005]} rotation={[0, -initAngle-Math.PI / 2, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#5A5A5D'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                        </Geometry>
+                        <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
+                    </mesh>
+                </group>
+                <group name='F-R-cross-ridge-CSG' position={[-ridgeLength / 2, 0, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle4}>
+                    <mesh>
+                        <Geometry computeVertexNormals>
+                            <Base rotation={ridgeSideCoverGlobalAngle0}>
+                                <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
+                            </Base>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength + 0.005]} rotation={[0, -initAngle, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#828288'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                            <Subtraction position={[0.01, -1, ridgeSideCoverLength - 0.005]} rotation={[0, -initAngle-Math.PI / 2, 0, 'XYZ']} visible={false}>
+                                <boxGeometry args={[1, 1, 0.25]}/>
+                                <meshStandardMaterial color={'#5A5A5D'}bumpScale={bumpScale} roughness={roughness} metalness={0.5} />
+                            </Subtraction>
+                        </Geometry>
+                        <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
+                    </mesh>
+                </group>
+            </group>
+
+            {/* <group name='side-cross-ridge' position={[0, roofHeight + 0.01, 0]}>
+                <group name='B-L' position={[ridgeLength / 2, 0.002, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle1}>
                     <mesh rotation={[roofCrossAngle, 0, -0.02]}>
                         <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
                         <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
                     </mesh>
                 </group>
-                <group position={[ridgeLength / 2, 0, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle2}>
+                <group name='F-L' position={[ridgeLength / 2, 0, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle2}>
                     <mesh rotation={[roofCrossAngle, 0, 0]}>
                         <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
                         <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
                     </mesh>
                 </group>
-                <group position={[-ridgeLength / 2, 0.002, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle3}>
+                <group name='B-R' position={[-ridgeLength / 2, 0.002, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle3}>
                     <mesh rotation={[roofCrossAngle, 0, 0.02]}>
                         <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
                         <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
                     </mesh>
                 </group>
-                <group position={[-ridgeLength / 2, 0, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle4}>
+                <group name='F-R' position={[-ridgeLength / 2, 0, -modelThickness / 2]} rotation={ridgeSideCoverGlobalAngle4}>
                     <mesh rotation={[roofCrossAngle, 0, 0.02]}>
                         <extrudeGeometry args={[ridgeCoverSideModel, extrudeSettings(ridgeSideCoverLength)]} />
                         <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
                     </mesh>
                 </group>
-            </group>
+            </group> */}
             <mesh name='top-ridge' position={[-ridgeLength / 2 - 0.1, roofHeight - 0.05, 0]} rotation={[0, Math.PI / 2, 0]}>
                 <extrudeGeometry args={[ridgeTopCoverModel, extrudeSettings(ridgeLength + 0.2)]} />
                 <meshStandardMaterial color={'#FFFFFF'} map={ridgeMap} bumpMap={ridgeMap} bumpScale={bumpScale} roughness={roughness} metalness={metalness} />
