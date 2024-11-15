@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import textureReducer from '../Features/Texture/textureSlice';
+import buildingCtrlReducer from '../Features/BuildingCtrl/buildingCtrlSlice';
 
 const store = configureStore({
     reducer: {
         texture: textureReducer,
+        buildingCtrl: buildingCtrlReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

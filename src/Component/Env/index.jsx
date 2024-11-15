@@ -1,11 +1,12 @@
 import { Environment, OrbitControls } from "@react-three/drei"
-
-import { ConstProps } from "../../Utils/Constants"
-
-const { height } = ConstProps;
+import { useSelector } from "react-redux";
 
 const Env = () => {
     // const envHDR = useEnvironment({ files: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/peppermint_powerplant_2_1k.hdr' })
+
+    const isBackgroundShow = useSelector(state => state.buildingCtrl.isBackgroundShow)
+    const isCamAutoRotate = useSelector(state => state.buildingCtrl.isCamAutoRotate)
+    // console.log('isBackgroundShow: ', isBackgroundShow);
 
     return (
         <>
@@ -13,9 +14,9 @@ const Env = () => {
             {/* <Environment preset="warehouse" background backgroundBlurriness={1} backgroundIntensity={2} /> */}
             <ambientLight intensity={2} />
             <OrbitControls
-                // target={[0, height / 2, 0]}
                 // enablePan={false}
-                autoRotate={false}
+                autoRotate={isCamAutoRotate}
+                rotateSpeed={0.2}
                 dampingFactor={0.2}
                 minPolarAngle={0}
                 maxPolarAngle={Infinity}

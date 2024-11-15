@@ -4,9 +4,11 @@ import { Center } from "@react-three/drei";
 
 import Pergola from "./Pergola"
 import Surface from "./Surface"
+import { useSelector } from "react-redux";
 
 const Building = () => {
     const { scene } = useThree();
+    const buildingType = useSelector(state => state.buildingCtrl.buildingType)
     
     useEffect(() => {
         if (scene) {
@@ -17,7 +19,7 @@ const Building = () => {
                 }
             })
         }
-    }, [scene])
+    }, [scene, buildingType])
     
     return (
         <Center rotation={[0, Math.PI, 0]}>
