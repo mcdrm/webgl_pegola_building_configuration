@@ -34,9 +34,9 @@ const ControlPanel = () => {
                     <SvgBuilding />
                 </button>
                 <ul className="dropdown-menu">
-                    <li><span className="dropdown-item" href="#" onClick={() => handleOptionClick('building', 'wood')}>● Type 1</span></li>
-                    <li><span className="dropdown-item" href="#" onClick={() => handleOptionClick('building', 'metal')}>● Type 2</span></li>
-                    <li><span className="dropdown-item" href="#" onClick={() => handleOptionClick('building', 'stone')}>● Type 3</span></li>
+                    <li><span className="dropdown-item" onClick={() => handleOptionClick('building', 'wood')}>● Type 1</span></li>
+                    <li><span className="dropdown-item" onClick={() => handleOptionClick('building', 'metal')}>● Type 2</span></li>
+                    <li><span className="dropdown-item" onClick={() => handleOptionClick('building', 'stone')}>● Type 3</span></li>
                 </ul>
                 <div className="vl" />
                 <div className={isShowBg ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('bgImage')}>

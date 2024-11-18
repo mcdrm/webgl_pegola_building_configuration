@@ -1,16 +1,16 @@
 import { RepeatWrapping, TextureLoader } from "three";
 import { useDispatch } from "react-redux";
-// import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 import { MarbleImg, MetalImg, StoneWallImg, SurfaceImg, WoodImg1, WoodImg2, GrassImg, RoofPanelTileImage, RoofRidgeTileImage } from "./TextureSource";
 import { loadInitTexture } from "../Redux/Features/Texture/textureSlice";
-// import { loadInitModel } from "../Redux/Features/GLBModel/glbModelSlice";
+import { loadInitModel } from "../Redux/Features/GLBModel/glbModelSlice";
 
 export const InitiallyAssetsLoad = async () => {
     const dispatch = useDispatch();
 
     const textureLoader = new TextureLoader();
-    // const gltfLoader = new GLTFLoader();
+    const gltfLoader = new GLTFLoader();
 
     try {
         const [surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture, roofPanelTileTexture, roofRidgeTileTexture] = await Promise.all([
@@ -30,23 +30,25 @@ export const InitiallyAssetsLoad = async () => {
         console.error('Error loading texture paths: ', error);
     }
 
-    // try {
-    //     const [ lampModel, potModel, sofaModel, tableModel_1, tableModel_2, tableModel_3, tableModel_4, matModel ] = await Promise.all(
-    //         [
-    //             gltfLoader.loadAsync('/assets/models/lamp.glb'),
-    //             gltfLoader.loadAsync('/assets/models/pot.glb'),
-    //             gltfLoader.loadAsync('/assets/models/sofa.glb'),
-    //             gltfLoader.loadAsync('/assets/models/table-1.glb'),
-    //             gltfLoader.loadAsync('/assets/models/table-2.glb'),
-    //             gltfLoader.loadAsync('/assets/models/table-3.glb'),
-    //             gltfLoader.loadAsync('/assets/models/table-4.glb'),
-    //             gltfLoader.loadAsync('/assets/models/mat.glb'),
-    //         ]
-    //     )
-    //     dispatch(loadInitModel({ lampModel, potModel, sofaModel, tableModel_1, tableModel_2, tableModel_3, tableModel_4, matModel }))
-    // } catch (error) {
-    //     console.error("Error loading model paths: ", error)
-    // }
+    try {
+        const [ matModel, sofaModel, lampModel, potModel_1, potModel_2, potModel_3, tableModel_1, tableModel_2, tableModel_3, tableModel_4 ] = await Promise.all(
+            [
+                gltfLoader.loadAsync('/assets/models/mat.glb'),
+                gltfLoader.loadAsync('/assets/models/sofa.glb'),
+                gltfLoader.loadAsync('/assets/models/lamp.glb'),
+                gltfLoader.loadAsync('/assets/models/pot-1.glb'),
+                gltfLoader.loadAsync('/assets/models/pot-2.glb'),
+                gltfLoader.loadAsync('/assets/models/pot-3.glb'),
+                gltfLoader.loadAsync('/assets/models/table-1.glb'),
+                gltfLoader.loadAsync('/assets/models/table-2.glb'),
+                gltfLoader.loadAsync('/assets/models/table-3.glb'),
+                gltfLoader.loadAsync('/assets/models/table-4.glb'),
+            ]
+        )
+        dispatch(loadInitModel({ matModel, sofaModel, lampModel, potModel_1, potModel_2, potModel_3, tableModel_1, tableModel_2, tableModel_3, tableModel_4 }))
+    } catch (error) {
+        console.error("Error loading model paths: ", error)
+    }
 };
 
 export const extrudeSettings = (depth, bevelThickness, bevelSize, bevelOffset, bevelSegments) => {
