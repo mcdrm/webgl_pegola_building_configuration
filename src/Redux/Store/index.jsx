@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import textureReducer from '../Features/Texture/textureSlice';
 import buildingCtrlReducer from '../Features/BuildingCtrl/buildingCtrlSlice';
+import glbModelReducer from '../Features/GLBModel/glbModelSlice';
 
 const store = configureStore({
     reducer: {
         texture: textureReducer,
         buildingCtrl: buildingCtrlReducer,
+        glbModel: glbModelReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

@@ -1,13 +1,16 @@
 import { RepeatWrapping, TextureLoader } from "three";
 import { useDispatch } from "react-redux";
-// import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
 
 import { MarbleImg, MetalImg, StoneWallImg, SurfaceImg, WoodImg1, WoodImg2, GrassImg, RoofPanelTileImage, RoofRidgeTileImage } from "./TextureSource";
 import { loadInitTexture } from "../Redux/Features/Texture/textureSlice";
+import { loadInitModel } from "../Redux/Features/GLBModel/glbModelSlice";
 
 export const InitiallyAssetsLoad = async () => {
     const dispatch = useDispatch();
+
     const textureLoader = new TextureLoader();
+    const gltfLoader = new GLTFLoader();
 
     try {
         const [surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture, roofPanelTileTexture, roofRidgeTileTexture] = await Promise.all([
@@ -25,6 +28,22 @@ export const InitiallyAssetsLoad = async () => {
         dispatch(loadInitTexture({ surfaceTexture, woodTexture1, woodTexture2, marbleTexture, metalTexture, stoneWallTexture, grassTexture, roofPanelTileTexture, roofRidgeTileTexture }));
     } catch (error) {
         console.error('Error loading texture paths: ', error);
+    }
+
+    try {
+        const [lampModel, potModel, sofaModel_1, sofaModel_2, tableModel_1, tableModel_2, tableModel_3] = await Promise.all([
+            gltfLoader.loadAsync('/assets/models/lamp.glb'),
+            gltfLoader.loadAsync('/assets/models/pot.glb'),
+            gltfLoader.loadAsync('/assets/models/sofa-1.glb'),
+            gltfLoader.loadAsync('/assets/models/sofa-2.glb'),
+            gltfLoader.loadAsync('/assets/models/table-1.glb'),
+            gltfLoader.loadAsync('/assets/models/table-2.glb'),
+            gltfLoader.loadAsync('/assets/models/table-3.glb'),
+        ])
+
+        dispatch(loadInitModel({ lampModel, potModel, sofaModel_1, sofaModel_2, tableModel_1, tableModel_2, tableModel_3 }))
+    } catch (error) {
+        console.error("Error loading model paths: ", error)
     }
 };
 
