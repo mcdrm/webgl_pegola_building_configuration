@@ -24,7 +24,6 @@ const Component = () => {
     return (
         <>
             { !isReadyForCanvas && <LoadingProgress /> }
-
             { isReadyForCanvas && <ControlPanel /> }
             <Canvas
                 shadows

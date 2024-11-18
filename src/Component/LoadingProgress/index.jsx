@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const LoadingProgress = () => {
     const [progressVal, setProgressVal] = useState(0);
-    console.log('progressVal: ', progressVal);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -11,7 +10,7 @@ const LoadingProgress = () => {
                 const newProgress = prev + randomStep;
                 return newProgress >= 100 ? 100 : newProgress;
             });
-        }, 350); // 250ms interval to reach 100 in approximately 5 seconds
+        }, 550); // 250ms interval to reach 100 in approximately 5 seconds
 
         return () => clearInterval(interval); // Cleanup interval on component unmount
     }, []);
