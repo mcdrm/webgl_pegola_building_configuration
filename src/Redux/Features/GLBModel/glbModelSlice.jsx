@@ -14,7 +14,7 @@ const initialState = {
 }
 
 export const glbModelSlice = createSlice({
-    name: 'glb-model',
+    name: 'glbModel',
     initialState,
     reducers: {
         loadInitModel: (state, action) => {

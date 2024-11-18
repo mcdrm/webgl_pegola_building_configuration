@@ -13,7 +13,6 @@ const Component = () => {
     const isAllModelLoaded = useSelector(state => state.glbModel.isAllModelLoaded)
     
     const [isReadyForCanvas, setIsReadyForCanvas] = useState(false);
-    console.log('isReadyForCanvas: ', isReadyForCanvas);
 
     useEffect(() => {
         if (isAllTextureLoaded && isAllModelLoaded) {
@@ -25,7 +24,6 @@ const Component = () => {
     return (
         <>
             { !isReadyForCanvas && <LoadingProgress /> }
-            {/* <LoadingProgress /> */}
 
             { isReadyForCanvas && <ControlPanel /> }
             <Canvas
