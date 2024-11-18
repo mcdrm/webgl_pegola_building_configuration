@@ -8,18 +8,16 @@ import Building from "./Building"
 import LoadingProgress from "./LoadingProgress"
 
 const Component = () => {
-    
     const isAllTextureLoaded = useSelector(state => state.texture.isAllTextureLoaded)
-    const isAllModelLoaded = useSelector(state => state.glbModel.isAllModelLoaded)
     
     const [isReadyForCanvas, setIsReadyForCanvas] = useState(false);
 
     useEffect(() => {
-        if (isAllTextureLoaded && isAllModelLoaded) {
+        if (isAllTextureLoaded) {
             setTimeout(() => {setIsReadyForCanvas(true)}, "2000")
         }
         else setIsReadyForCanvas(false);
-    }, [isAllTextureLoaded , isAllModelLoaded])
+    }, [isAllTextureLoaded])
 
     return (
         <>
