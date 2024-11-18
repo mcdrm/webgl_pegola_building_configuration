@@ -8,7 +8,6 @@ import Building from "./Building"
 import LoadingProgress from "./LoadingProgress"
 
 const Component = () => {
-    
     const isAllTextureLoaded = useSelector(state => state.texture.isAllTextureLoaded)
     const isAllModelLoaded = useSelector(state => state.glbModel.isAllModelLoaded)
     
