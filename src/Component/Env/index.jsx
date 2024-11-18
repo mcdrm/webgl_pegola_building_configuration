@@ -39,7 +39,7 @@ const Env = () => {
                 shadow-camera-far={50}
                 shadow-camera-left={-10}
             />
-            <directionalLight position={[-3, 5, -4]} intensity={2} />
+            <directionalLight position={[-3, 5, -4]} intensity={3.5} />
 
             <directionalLight position={[4, 0, -6]} intensity={0.02} />
             <directionalLight position={[-4, 0, 6]} intensity={0.02} />
