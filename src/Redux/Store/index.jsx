@@ -1,20 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 import textureReducer from '../Features/Texture/textureSlice';
 import buildingCtrlReducer from '../Features/BuildingCtrl/buildingCtrlSlice';
-// import glbModelReducer from '../Features/GLBModel/glbModelSlice';
+import glbModelReducer from '../Features/GLBModel/glbModelSlice';
 
 const store = configureStore({
     reducer: {
         texture: textureReducer,
         buildingCtrl: buildingCtrlReducer,
-        // glbModel: glbModelReducer,
+        glbModel: glbModelReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: {
           ignoredActions: [
             'texture/loadInitTexture',
-            // 'glbModel/loadInitModel'
+            'glbModel/loadInitModel'
           ],
           ignoredPaths: [
             'texture.textureProps.surfaceTexture',
@@ -29,8 +29,7 @@ const store = configureStore({
             
             // 'glbModel.potModel',
             // 'glbModel.lampModel',
-            // 'glbModel.sofaModel_1',
-            // 'glbModel.sofaModel',
+            'glbModel.sofaModel',
             // 'glbModel.tableModel_1',
             // 'glbModel.tableModel_2',
             // 'glbModel.tableModel_3',
