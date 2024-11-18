@@ -21,7 +21,7 @@ const Building = () => {
     }, [scene, buildingType])
     
     return (
-        <group position={[0, 0, 0]} rotation={[0, Math.PI, 0]}>
+        <group rotation={[0, Math.PI, 0]}>
             <Pergola />
             <Surface />
         </group>

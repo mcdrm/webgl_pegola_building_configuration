@@ -17,7 +17,7 @@ const Env = () => {
                 background
                 backgroundIntensity={5}
                 backgroundBlurriness={isShowBg ? 0 : 1}
-                ground={isShowBg ? { height: 85, radius: 350, scale: 20 } : null}
+                ground={isShowBg ? { height: 20, radius: 100, scale: 20 } : null}
             />
             <OrbitControls
                 target={[0, height / 3, 0]}
@@ -39,7 +39,7 @@ const Env = () => {
                 shadow-camera-far={50}
                 shadow-camera-left={-10}
             />
-            <directionalLight position={[-3, 5, -4]} intensity={2} />
+            <directionalLight position={[-3, 5, -4]} intensity={3.5} />
 
             <directionalLight position={[4, 0, -6]} intensity={0.02} />
             <directionalLight position={[-4, 0, 6]} intensity={0.02} />
