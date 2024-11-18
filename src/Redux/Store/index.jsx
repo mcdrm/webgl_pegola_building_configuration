@@ -27,7 +27,9 @@ const store = configureStore({
             'texture.textureProps.roofPanelTileTexture',
             'texture.textureProps.roofRidgeTileTexture',
             
-            'glbModel.potModel',
+            'glbModel.potModel_1',
+            'glbModel.potModel_2',
+            'glbModel.potModel_3',
             'glbModel.lampModel',
             'glbModel.sofaModel',
             'glbModel.tableModel_1',

@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    potModel: null,
+    potModel_1: null,
+    potModel_2: null,
+    potModel_3: null,
     lampModel: null,
     sofaModel: null,
     tableModel_1: null,
@@ -18,7 +20,9 @@ export const glbModelSlice = createSlice({
     initialState,
     reducers: {
         loadInitModel: (state, action) => {
-            state.potModel = action.payload.potModel.scene;
+            state.potModel_1 = action.payload.potModel_1.scene;
+            state.potModel_2 = action.payload.potModel_2.scene;
+            state.potModel_3 = action.payload.potModel_3.scene;
             state.lampModel = action.payload.lampModel.scene;
             state.sofaModel = action.payload.sofaModel.scene;
             state.tableModel_1 = action.payload.tableModel_1.scene;
