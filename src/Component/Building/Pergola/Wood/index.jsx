@@ -1,6 +1,6 @@
-import Accessories from "./Accessories"
 import Pillar from "./Pillar"
 import Roof from "./Roof"
+// import Accessories from "./Accessories"
 
 const WoodPergola = () => {
     
@@ -8,7 +8,7 @@ const WoodPergola = () => {
         <>
             <Roof />
             <Pillar />
-            <Accessories />
+            {/* <Accessories /> */}
         </>
     )
 }
