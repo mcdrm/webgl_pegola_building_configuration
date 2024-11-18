@@ -2,8 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     buildingType: 'wood',
-    isBackgroundShow: false,
+    isShowBg: false,
     isCamAutoRotate: false,
+    isFrameOnly: false,
+    isShowGrass: false,
 }
 
 export const buildingCtrlSlice = createSlice({
@@ -13,15 +15,22 @@ export const buildingCtrlSlice = createSlice({
         setBuildingType: (state, action) => {
             state.buildingType = action.payload;
         },
-        setIsBackgroundShow: state => {
-            state.isBackgroundShow = !state.isBackgroundShow;
+        setIsShowBg: state => {
+            state.isShowBg = !state.isShowBg;
         },
         setIsCamAutoRotate: state => {
             state.isCamAutoRotate = !state.isCamAutoRotate;
         },
+        setIsFrameOnly: state => {
+            state.isFrameOnly = !state.isFrameOnly;
+        },
+        setIsShowGrass: (state, action) => {
+            if (action.payload !== undefined) state.isShowGrass = false;
+            else state.isShowGrass = !state.isShowGrass;
+        },
     }
 })
 
-export const { setBuildingType, setIsBackgroundShow, setIsCamAutoRotate }= buildingCtrlSlice.actions
+export const { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsFrameOnly, setIsShowGrass }= buildingCtrlSlice.actions
 
 export default buildingCtrlSlice.reducer

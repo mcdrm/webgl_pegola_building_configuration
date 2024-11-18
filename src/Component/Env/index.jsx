@@ -1,25 +1,35 @@
 import { Environment, OrbitControls } from "@react-three/drei"
 import { useSelector } from "react-redux";
+import { ConstProps } from "../../Utils/Constants";
+
+const { height } = ConstProps;
 
 const Env = () => {
-    // const envHDR = useEnvironment({ files: 'https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/peppermint_powerplant_2_1k.hdr' })
+    // const envHDR = useEnvironment({ files: '/assets/env/env-1.hdr' })
 
-    const isBackgroundShow = useSelector(state => state.buildingCtrl.isBackgroundShow)
+    const isShowBg = useSelector(state => state.buildingCtrl.isShowBg)
     const isCamAutoRotate = useSelector(state => state.buildingCtrl.isCamAutoRotate)
-    // console.log('isBackgroundShow: ', isBackgroundShow);
-
+    
+    
     return (
         <>
-            {/* <Environment preset="park" background backgroundBlurriness={1} ground={{ height: 11, radius: 60, scale: 140 }} /> */}
-            {/* <Environment preset="warehouse" background backgroundBlurriness={1} backgroundIntensity={2} /> */}
-            <ambientLight intensity={2} />
+            <Environment
+                files={'/assets/env/env.hdr'}
+                background
+                backgroundIntensity={5}
+                backgroundBlurriness={isShowBg ? 0 : 1}
+                ground={isShowBg ? { height: 85, radius: 350, scale: 20 } : null}
+            />
             <OrbitControls
-                // enablePan={false}
+                target={[0, height / 3, 0]}
+                enablePan={false}
                 autoRotate={isCamAutoRotate}
-                rotateSpeed={0.2}
+                rotateSpeed={0.6}
                 dampingFactor={0.2}
                 minPolarAngle={0}
-                maxPolarAngle={Infinity}
+                maxPolarAngle={isShowBg ? Math.PI / 2.1 : Infinity}
+                minDistance={6}
+                maxDistance={isShowBg ? 20 : 40}
             />
             <directionalLight
                 position={[3, 5, 4]}

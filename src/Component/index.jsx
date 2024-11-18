@@ -1,16 +1,17 @@
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useThree } from "@react-three/fiber"
+import { Suspense, useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 
 import ControlPanel from "./ControlPanel"
 import Env from "./Env"
 import Building from "./Building"
-import { Suspense, useEffect, useState } from "react"
-import { useSelector } from "react-redux"
 
 const Component = () => {
+    
     const textureProps = useSelector(state => state.texture.textureProps)
 
     const [isAllTextureLoaded, setIsAllTextureLoaded] = useState(false)
-    
+
     useEffect(() => {
         if (Object.values(textureProps).some((item) => { return item === null })) {
             setIsAllTextureLoaded(true)

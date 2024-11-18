@@ -10,6 +10,7 @@ const { width, length } = ConstProps;
 const Surface = () => {
     const { gl } = useThree();
     const { surfaceTexture, grassTexture } = useSelector(state => state.texture.textureProps)
+    const isShowGrass = useSelector(state => state.buildingCtrl.isShowGrass)
     
     const surfaceFloorTexture = surfaceTexture?.clone();
     textureAnisotropy(gl, surfaceFloorTexture, 1, 1, 0);
@@ -45,8 +46,8 @@ const Surface = () => {
                 <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
             
-            <mesh name='grass-ground-panel' rotation={[-Math.PI / 2, 0, 0]}>
-                <circleGeometry args={[600, 60]} />
+            <mesh name='grass-ground-panel' rotation={[-Math.PI / 2, 0, 0]} visible={isShowGrass}>
+                <circleGeometry args={[300, 60]} />
                 <meshStandardMaterial color={'#ACACAC'} map={grassGroundTexture} bumpMap={grassGroundTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
         </>
