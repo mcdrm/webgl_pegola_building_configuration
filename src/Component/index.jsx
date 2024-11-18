@@ -1,26 +1,33 @@
-import { Canvas, useThree } from "@react-three/fiber"
+import { Canvas } from "@react-three/fiber"
 import { Suspense, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 import ControlPanel from "./ControlPanel"
 import Env from "./Env"
 import Building from "./Building"
+import LoadingProgress from "./LoadingProgress"
 
 const Component = () => {
     
-    const textureProps = useSelector(state => state.texture.textureProps)
-
-    const [isAllTextureLoaded, setIsAllTextureLoaded] = useState(false)
+    const isAllTextureLoaded = useSelector(state => state.texture.isAllTextureLoaded)
+    const isAllModelLoaded = useSelector(state => state.glbModel.isAllModelLoaded)
+    
+    const [isReadyForCanvas, setIsReadyForCanvas] = useState(false);
+    console.log('isReadyForCanvas: ', isReadyForCanvas);
 
     useEffect(() => {
-        if (Object.values(textureProps).some((item) => { return item === null })) {
-            setIsAllTextureLoaded(true)
+        if (isAllTextureLoaded && isAllModelLoaded) {
+            setTimeout(() => {setIsReadyForCanvas(true)}, "2000")
         }
-    }, [textureProps])
+        else setIsReadyForCanvas(false);
+    }, [isAllTextureLoaded, isAllModelLoaded])
 
-    return isAllTextureLoaded && (
-        <div>
-            <ControlPanel />
+    return (
+        <>
+            { !isReadyForCanvas && <LoadingProgress /> }
+            {/* <LoadingProgress /> */}
+
+            { isReadyForCanvas && <ControlPanel /> }
             <Canvas
                 shadows
                 dpr={[1, 1.5]}
@@ -33,10 +40,10 @@ const Component = () => {
             >
                 <Suspense>
                     <Env />
-                    <Building />
+                    { isReadyForCanvas && <Building /> }
                 </Suspense>
             </Canvas>
-        </div>
+        </>
     )
 }
 

@@ -12,6 +12,8 @@ const initialState = {
         roofPanelTileTexture: null,
         roofRidgeTileTexture: null,
     },
+
+    isAllTextureLoaded: false,
 }
 
 export const textureSlice = createSlice({
@@ -29,6 +31,8 @@ export const textureSlice = createSlice({
             state.textureProps.grassTexture = grassTexture;
             state.textureProps.roofPanelTileTexture = roofPanelTileTexture;
             state.textureProps.roofRidgeTileTexture = roofRidgeTileTexture;
+            
+            state.isAllTextureLoaded = true;
         },
     }
 })

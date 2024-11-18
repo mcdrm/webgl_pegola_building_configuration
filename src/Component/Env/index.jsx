@@ -10,7 +10,6 @@ const Env = () => {
     const isShowBg = useSelector(state => state.buildingCtrl.isShowBg)
     const isCamAutoRotate = useSelector(state => state.buildingCtrl.isCamAutoRotate)
     
-    
     return (
         <>
             <Environment

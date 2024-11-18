@@ -31,17 +31,19 @@ export const InitiallyAssetsLoad = async () => {
     }
 
     try {
-        const [lampModel, potModel, sofaModel_1, sofaModel_2, tableModel_1, tableModel_2, tableModel_3] = await Promise.all([
-            gltfLoader.loadAsync('/assets/models/lamp.glb'),
-            gltfLoader.loadAsync('/assets/models/pot.glb'),
-            gltfLoader.loadAsync('/assets/models/sofa-1.glb'),
-            gltfLoader.loadAsync('/assets/models/sofa-2.glb'),
-            gltfLoader.loadAsync('/assets/models/table-1.glb'),
-            gltfLoader.loadAsync('/assets/models/table-2.glb'),
-            gltfLoader.loadAsync('/assets/models/table-3.glb'),
-        ])
-
-        dispatch(loadInitModel({ lampModel, potModel, sofaModel_1, sofaModel_2, tableModel_1, tableModel_2, tableModel_3 }))
+        const [lampModel, potModel, sofaModel, tableModel_1, tableModel_2, tableModel_3, tableModel_4, matModel ] = await Promise.all(
+            [
+                gltfLoader.loadAsync('/assets/models/lamp.glb'),
+                gltfLoader.loadAsync('/assets/models/pot.glb'),
+                gltfLoader.loadAsync('/assets/models/sofa.glb'),
+                gltfLoader.loadAsync('/assets/models/table-1.glb'),
+                gltfLoader.loadAsync('/assets/models/table-2.glb'),
+                gltfLoader.loadAsync('/assets/models/table-3.glb'),
+                gltfLoader.loadAsync('/assets/models/table-4.glb'),
+                gltfLoader.loadAsync('/assets/models/mat.glb'),
+            ]
+        )
+        dispatch(loadInitModel({ lampModel, potModel, sofaModel, tableModel_1, tableModel_2, tableModel_3, tableModel_4, matModel }))
     } catch (error) {
         console.error("Error loading model paths: ", error)
     }

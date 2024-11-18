@@ -48,11 +48,11 @@ const ControlPanel = () => {
                     <span>Rotate</span>
                     <SvgRotate color={isCamAutoRotate ? '#0066FF' : '#3C3C3C'} />
                 </div>
-                <div className="vl" />
+                {/* <div className="vl" />
                 <div className={isFrameOnly ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('frame-only')}>
                     <span>Frame only</span>
                     <SvgFrameOnly color={isFrameOnly ? '#0066FF' : '#3C3C3C'} />
-                </div>
+                </div> */}
                 <div className="vl" />
                 <button className={isShowGrass ? "select-item isSelected" : isShowBg ? "select-item isDisabled" : "select-item"} onClick={() => handleOptionClick('grass-floor')} disabled={isShowBg}>
                     <span>Grass Floor</span>
