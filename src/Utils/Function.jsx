@@ -44,7 +44,6 @@ export const InitiallyAssetsLoad = async () => {
             ]
         )
         dispatch(loadInitModel({ lampModel, potModel, sofaModel, tableModel_1, tableModel_2, tableModel_3, tableModel_4, matModel }))
-        dispatch(loadInitModel({ sofaModel }))
     } catch (error) {
         console.error("Error loading model paths: ", error)
     }
