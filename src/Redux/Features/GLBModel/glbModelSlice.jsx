@@ -7,8 +7,9 @@ const initialState = {
     potModel_1: null,
     potModel_2: null,
     potModel_3: null,
+    sofaModel_1: null,
+    sofaModel_2: null,
     tableModel_1: null,
-    tableModel_2: null,
     tableModel_3: null,
     tableModel_4: null,
 
@@ -26,8 +27,8 @@ export const glbModelSlice = createSlice({
             state.potModel_1 = action.payload.potModel_1.scene;
             state.potModel_2 = action.payload.potModel_2.scene;
             state.potModel_3 = action.payload.potModel_3.scene;
+            state.sofaModel_1 = action.payload.sofaModel_1.scene;
             state.tableModel_1 = action.payload.tableModel_1.scene;
-            state.tableModel_2 = action.payload.tableModel_2.scene;
             state.tableModel_3 = action.payload.tableModel_3.scene;
             state.tableModel_4 = action.payload.tableModel_4.scene;
             
