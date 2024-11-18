@@ -17,7 +17,7 @@ const Env = () => {
                 background
                 backgroundIntensity={5}
                 backgroundBlurriness={isShowBg ? 0 : 1}
-                ground={isShowBg ? { height: 20, radius: 100, scale: 20 } : null}
+                ground={isShowBg ? { height: 30, radius: 350, scale: 25 } : null}
             />
             <OrbitControls
                 target={[0, height / 3, 0]}
