@@ -6,6 +6,7 @@ import { SvgBuilding, SvgFrameOnly, SvgGrass, SvgImage, SvgRotate } from "../../
 const ControlPanel = () => {
     const dispatch = useDispatch();
 
+    const buildingType = useSelector(state => state.buildingCtrl.buildingType)
     const isShowBg = useSelector(state => state.buildingCtrl.isShowBg)
     const isCamAutoRotate = useSelector(state => state.buildingCtrl.isCamAutoRotate)
     const isFrameOnly = useSelector(state => state.buildingCtrl.isFrameOnly)
@@ -34,25 +35,27 @@ const ControlPanel = () => {
                     <SvgBuilding />
                 </button>
                 <ul className="dropdown-menu">
-                    <li><span className="dropdown-item" onClick={() => handleOptionClick('building', 'wood')}>● Type 1</span></li>
-                    <li><span className="dropdown-item" onClick={() => handleOptionClick('building', 'metal')}>● Type 2</span></li>
-                    <li><span className="dropdown-item" onClick={() => handleOptionClick('building', 'stone')}>● Type 3</span></li>
+                    <li><span className="dropdown-item" style={{ color: buildingType === 'wood' ? '#0066FF' : '#3C3C3C' }} onClick={() => handleOptionClick('building', 'wood')}>Type 1</span></li>
+                    <hr style={{marginTop: 5, marginBottom: 5}} />
+                    <li><span className="dropdown-item" style={{ color: buildingType === 'metal' ? '#0066FF' : '#3C3C3C' }} onClick={() => handleOptionClick('building', 'metal')}>Type 2</span></li>
+                    <hr style={{marginTop: 5, marginBottom: 5}} />
+                    <li><span className="dropdown-item" style={{ color: buildingType === 'stone' ? '#0066FF' : '#3C3C3C' }} onClick={() => handleOptionClick('building', 'stone')}>Type 3</span></li>
                 </ul>
-                <div className="vl" />
+                {/* <div className="vl" />
                 <div className={isShowBg ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('bgImage')}>
                     <span>Background</span>
                     <SvgImage color={isShowBg ? '#0066FF' : '#3C3C3C'} />
-                </div>
+                </div> */}
                 <div className="vl" />
                 <div className={isCamAutoRotate ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('cam-rotate')}>
                     <span>Rotate</span>
                     <SvgRotate color={isCamAutoRotate ? '#0066FF' : '#3C3C3C'} />
                 </div>
-                {/* <div className="vl" />
+                <div className="vl" />
                 <div className={isFrameOnly ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('frame-only')}>
                     <span>Frame only</span>
                     <SvgFrameOnly color={isFrameOnly ? '#0066FF' : '#3C3C3C'} />
-                </div> */}
+                </div>
                 <div className="vl" />
                 <button className={isShowGrass ? "select-item isSelected" : isShowBg ? "select-item isDisabled" : "select-item"} onClick={() => handleOptionClick('grass-floor')} disabled={isShowBg}>
                     <span>Grass Floor</span>
