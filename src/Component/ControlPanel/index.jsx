@@ -28,7 +28,7 @@ const ControlPanel = () => {
     
     return (
         <div className="building-controller">
-            <div className="control-section">
+            <div className="bottom-section">
                 <button className="select-item" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span>Pergola</span>
                     <SvgBuilding />
@@ -58,6 +58,25 @@ const ControlPanel = () => {
                     <span>Grass Floor</span>
                     <SvgGrass color={isShowGrass ? '#0066FF' : '#3C3C3C'} />
                 </button>
+            </div>
+            <div className="side-section">
+                <div className="size-item">
+                    <p>width</p>
+                    <input type="range" min="4" max="8" step="1" defaultValue="4" />
+                </div>
+                <div className="size-item">
+                    <p>length</p>
+                    <input type="range" min="6" max="10" step="1" defaultValue="6" />
+                    
+                </div>
+                <div className="size-item">
+                    <p>height</p>
+                    <input type="range" min="2.5" max="4" step="0.5" defaultValue="2.5" />
+                </div>
+                <div className="size-item">
+                    <p>pitch</p>
+                    <input type="range" min="1" max="6" step="1" defaultValue="1" />
+                </div>
             </div>
         </div>
     )

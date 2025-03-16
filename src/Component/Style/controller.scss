@@ -1,11 +1,12 @@
 .building-controller {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 10;
     
-    .control-section {
+    .bottom-section {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 0);
+        z-index: 10;
+
         display: flex;
         justify-content: end;
         align-items: center;
@@ -52,6 +53,23 @@
             margin-left: 5px;
             margin-right: 6px;
             top: 0;
+        }
+    }
+
+    .side-section {
+        position: absolute;
+        z-index: 10;
+        top: 30px;
+        left: 30px;
+        width: 250px;
+        height: 30%;
+        background-color: antiquewhite;
+        padding: 20px;
+
+        .size-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
         }
     }
 }
