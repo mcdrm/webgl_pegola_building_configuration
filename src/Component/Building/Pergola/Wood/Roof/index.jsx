@@ -8,12 +8,15 @@ import { ConstProps, ConstWoodPergolaProps } from '../../../../../Utils/Constant
 
 import { TrussModel, RectModel } from '../CommonModel';
 
-const { width, length, height, pitch, overhang, freeOverhang, roofAlpha } = ConstProps;
+const { overhang, freeOverhang } = ConstProps;
 const { roofBowHeight, pillarSize } = ConstWoodPergolaProps;
 
 const Roof = () => {
     const { gl } = useThree();
     const { woodTexture1 } = useSelector(state => state.texture.textureProps)
+    const { width, length, height, pitch } = useSelector(state => state.buildingCtrl)
+    
+    const roofAlpha = Math.atan(pitch / 12);
     
     const woodTopTexture = woodTexture1?.clone();
     textureAnisotropy(gl, woodTopTexture, 1, 1, 0);
@@ -40,7 +43,7 @@ const Roof = () => {
         })
 
         return data
-    }, [])
+    }, [width, length, height, pitch])
 
     const RectTrussInfoArr_2 = useMemo(() => {
         let data = [];
@@ -70,7 +73,7 @@ const Roof = () => {
         })
 
         return data;
-    }, [])
+    }, [width, length, height, pitch])
 
     const TrussInfoArr_1 = useMemo(() => {
         const { distance, count } = getDistanceAndCount(0.6, length);
@@ -84,7 +87,7 @@ const Roof = () => {
         })
 
         return data
-    }, [])
+    }, [width, length, height, pitch])
 
     const TrussInfoArr_2 = useMemo(() => {
         const distance = 0.3;
@@ -102,7 +105,7 @@ const Roof = () => {
         })
 
         return data;
-    }, [])
+    }, [width, length, height, pitch])
 
     const TrussInfoArr_3 = useMemo(() => {
         const distance = 0.3;
@@ -118,7 +121,7 @@ const Roof = () => {
         })
 
         return data;
-    }, [])
+    }, [width, length, height, pitch])
     
     return (
         <group position={[0, height, 0]}>

@@ -34,6 +34,7 @@ const Component = () => {
                     height: "100vh",
                 }}
             >
+                <axesHelper args={[50, 50, 50]} />
                 <Suspense>
                     <Env />
                     { isReadyForCanvas && <Building /> }

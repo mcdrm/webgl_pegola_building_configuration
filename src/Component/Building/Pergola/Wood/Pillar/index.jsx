@@ -3,17 +3,17 @@ import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux';
 import { useThree } from '@react-three/fiber';
 
-import { ConstProps, ConstWoodPergolaProps } from '../../../../../Utils/Constants';
+import { ConstWoodPergolaProps } from '../../../../../Utils/Constants';
 import { textureAnisotropy } from '../../../../../Utils/Function';
 
 import { RectModel, PillarCorbelModel } from '../CommonModel';
 
-const { width, length, height, pitch } = ConstProps;
 const { pillarSize, pillarBaseSize } = ConstWoodPergolaProps;
 
 const Pillar = () => {
     const { gl } = useThree();
     const { woodTexture1 } = useSelector(state => state.texture.textureProps)
+    const { width, length, height, pitch } = useSelector(state => state.buildingCtrl)
     
     const woodPillarTexture = woodTexture1?.clone();
     textureAnisotropy(gl, woodPillarTexture, 1, 1, Math.PI / 2);
@@ -40,7 +40,7 @@ const Pillar = () => {
         })
 
         return data;
-    }, [])
+    }, [width, length, height, pitch])
 
     const PillarBaseModelInfoArr = useMemo(() => {
         let data = [];
@@ -60,7 +60,7 @@ const Pillar = () => {
         })
 
         return data;
-    }, [])
+    }, [width, length, height, pitch])
 
     const PillarCorbelModelInfoArr = useMemo(() => {
         let data = [];
@@ -69,7 +69,7 @@ const Pillar = () => {
             new Array(2).fill("").forEach((_, index_j) => {
                 data.push({
                     pos_x: (width / 2 - pillarSize) * Math.pow(-1, index_j),
-                    pos_y: height - (index_i === 0 ? 0.83 : 0.37),
+                    pos_y: height - (index_i === 0 ? 0.83 : 0.37) + (index_i === 1 ? length / 2 * pitch / 12 : pillarSize * pitch / 12),
                     pos_z: (length / 2 - pillarSize / 2) * Math.pow(-1, 0) * (index_i === 0 ? 1 : -1),
                     angle: [0, (index_j === 0 ? Math.PI : 0), 0]
                 })
@@ -79,7 +79,7 @@ const Pillar = () => {
             new Array(2).fill("").forEach((_, index_j) => {
                 data.push({
                     pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index_j),
-                    pos_y: height - (index_i === 0 ? 0.55 : 0.2),
+                    pos_y: height - (index_i === 0 ? 0.55 : 0.2) + (index_i === 1 ? length * pitch / 12 : pillarSize * pitch / 12),
                     pos_z: (length / 2 - pillarSize) * Math.pow(-1, 0) * (index_i === 0 ? 1 : -1),
                     angle: [0, (index_i === 0 ? Math.PI / 2 : -Math.PI / 2), 0]
                 })
@@ -87,13 +87,13 @@ const Pillar = () => {
         })
 
         return data
-    }, [])
+    }, [width, length, height, pitch])
     
     return (
         <>
             {PillarModelInfoArr.map((item, index) => <RectModel key={`pillar-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} map={woodPillarTexture} />)}
             {PillarBaseModelInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={[Math.PI / 2, 0, 0]} map={woodPillarTexture} metalness={0.9} />)}
-            {PillarCorbelModelInfoArr.map((item, index) => <PillarCorbelModel key={`pillar-cobel-model-${index}`} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.angle} map={woodCorbelTexture} />)}
+            {/* {PillarCorbelModelInfoArr.map((item, index) => <PillarCorbelModel key={`pillar-cobel-model-${index}`} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.angle} map={woodCorbelTexture} />)} */}
         </>
     )
 }

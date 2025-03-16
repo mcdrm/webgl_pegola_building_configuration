@@ -2,14 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useThree } from '@react-three/fiber';
 
-import { ConstProps } from '../../../Utils/Constants';
 import { textureAnisotropy } from '../../../Utils/Function';
-    
-const { width, length } = ConstProps;
 
 const Surface = () => {
     const { gl } = useThree();
     const { surfaceTexture, grassTexture } = useSelector(state => state.texture.textureProps)
+    const { width, length } = useSelector(state => state.buildingCtrl)
+    console.log('{ width, length }: ', { width, length });
     const isShowGrass = useSelector(state => state.buildingCtrl.isShowGrass)
     
     const surfaceFloorTexture = surfaceTexture?.clone();

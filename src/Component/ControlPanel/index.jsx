@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 
-import { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsFrameOnly, setIsShowGrass } from "../../Redux/Features/BuildingCtrl/buildingCtrlSlice";
+import { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsFrameOnly, setIsShowGrass, setBuildingDimension } from "../../Redux/Features/BuildingCtrl/buildingCtrlSlice";
 import { SvgBuilding, SvgFrameOnly, SvgGrass, SvgImage, SvgRotate } from "../../Utils/SvgSource"
 
 const ControlPanel = () => {
@@ -26,6 +26,11 @@ const ControlPanel = () => {
             dispatch(setIsShowGrass());
         }
     }
+
+    const handleDimensionChange = (e) => {
+        const { name, value } = e.target;
+        dispatch(setBuildingDimension({ [name]: Number(value) }))
+    }
     
     return (
         <div className="building-controller">
@@ -41,11 +46,11 @@ const ControlPanel = () => {
                     <hr style={{marginTop: 5, marginBottom: 5}} />
                     <li><span className="dropdown-item" style={{ color: buildingType === 'stone' ? '#0066FF' : '#3C3C3C' }} onClick={() => handleOptionClick('building', 'stone')}>Type 3</span></li>
                 </ul>
-                {/* <div className="vl" />
+                <div className="vl" />
                 <div className={isShowBg ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('bgImage')}>
                     <span>Background</span>
                     <SvgImage color={isShowBg ? '#0066FF' : '#3C3C3C'} />
-                </div> */}
+                </div>
                 <div className="vl" />
                 <div className={isCamAutoRotate ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('cam-rotate')}>
                     <span>Rotate</span>
@@ -65,20 +70,20 @@ const ControlPanel = () => {
             <div className="side-section">
                 <div className="size-item">
                     <p>width</p>
-                    <input type="range" min="4" max="8" step="1" defaultValue="4" />
+                    <input type="range" name="width" onChange={handleDimensionChange} min="6" max="10" step="1" defaultValue="6" />
                 </div>
                 <div className="size-item">
                     <p>length</p>
-                    <input type="range" min="6" max="10" step="1" defaultValue="6" />
+                    <input type="range" name="length" onChange={handleDimensionChange} min="4" max="8" step="1" defaultValue="4" />
                     
                 </div>
                 <div className="size-item">
                     <p>height</p>
-                    <input type="range" min="2.5" max="4" step="0.5" defaultValue="2.5" />
+                    <input type="range" name="height" onChange={handleDimensionChange} min="2.5" max="4" step="0.5" defaultValue="2.5" />
                 </div>
                 <div className="size-item">
                     <p>pitch</p>
-                    <input type="range" min="1" max="6" step="1" defaultValue="1" />
+                    <input type="range" name="pitch" onChange={handleDimensionChange} min="1" max="6" step="1" defaultValue="1" />
                 </div>
             </div>
         </div>

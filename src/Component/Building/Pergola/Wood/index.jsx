@@ -8,7 +8,7 @@ const WoodPergola = () => {
         <>
             <Roof />
             <Pillar />
-            <Accessories />
+            {/* <Accessories /> */}
         </>
     )
 }

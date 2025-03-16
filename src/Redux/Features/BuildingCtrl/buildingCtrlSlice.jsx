@@ -6,6 +6,11 @@ const initialState = {
     isCamAutoRotate: false,
     isFrameOnly: false,
     isShowGrass: false,
+
+    width: 6,
+    length: 4,
+    height: 2.5,
+    pitch: 1,
 }
 
 export const buildingCtrlSlice = createSlice({
@@ -28,9 +33,13 @@ export const buildingCtrlSlice = createSlice({
             if (action.payload !== undefined) state.isShowGrass = false;
             else state.isShowGrass = !state.isShowGrass;
         },
+
+        setBuildingDimension: (state, action) => {
+            state[Object.keys(action.payload)[0]] = action.payload[Object.keys(action.payload)[0]];
+        },
     }
 })
 
-export const { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsFrameOnly, setIsShowGrass }= buildingCtrlSlice.actions
+export const { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsFrameOnly, setIsShowGrass, setBuildingDimension }= buildingCtrlSlice.actions
 
 export default buildingCtrlSlice.reducer
