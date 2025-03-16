@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 
-import { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsFrameOnly, setIsShowGrass, setBuildingDimension } from "../../Redux/Features/BuildingCtrl/buildingCtrlSlice";
+import { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsBuildingOnly, setIsShowGrass, setBuildingDimension } from "../../Redux/Features/BuildingCtrl/buildingCtrlSlice";
 import { SvgBuilding, SvgFrameOnly, SvgGrass, SvgImage, SvgRotate } from "../../Utils/SvgSource"
 
 const ControlPanel = () => {
@@ -20,8 +20,8 @@ const ControlPanel = () => {
             dispatch(setIsShowGrass(false));
         } else if (type === 'cam-rotate') {
             dispatch(setIsCamAutoRotate());
-        } else if (type === 'frame-only') {
-            dispatch(setIsFrameOnly());
+        } else if (type === 'building-only') {
+            dispatch(setIsBuildingOnly());
         } else if (type === 'grass-floor') {
             dispatch(setIsShowGrass());
         }
@@ -58,7 +58,7 @@ const ControlPanel = () => {
                 </div>
                 <div className="vl" />
                 <div className={isFrameOnly ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('frame-only')}>
-                    <span>Frame only</span>
+                    <span>Building only</span>
                     <SvgFrameOnly color={isFrameOnly ? '#0066FF' : '#3C3C3C'} />
                 </div>
                 <div className="vl" />

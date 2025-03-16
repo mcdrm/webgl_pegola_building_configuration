@@ -4,7 +4,7 @@ const initialState = {
     buildingType: 'wood',
     isShowBg: false,
     isCamAutoRotate: false,
-    isFrameOnly: false,
+    isBuildingOnly: false,
     isShowGrass: false,
 
     width: 6,
@@ -26,8 +26,8 @@ export const buildingCtrlSlice = createSlice({
         setIsCamAutoRotate: state => {
             state.isCamAutoRotate = !state.isCamAutoRotate;
         },
-        setIsFrameOnly: state => {
-            state.isFrameOnly = !state.isFrameOnly;
+        setIsBuildingOnly: state => {
+            state.isBuildingOnly = !state.isBuildingOnly;
         },
         setIsShowGrass: (state, action) => {
             if (action.payload !== undefined) state.isShowGrass = false;
@@ -40,6 +40,6 @@ export const buildingCtrlSlice = createSlice({
     }
 })
 
-export const { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsFrameOnly, setIsShowGrass, setBuildingDimension }= buildingCtrlSlice.actions
+export const { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsBuildingOnly, setIsShowGrass, setBuildingDimension }= buildingCtrlSlice.actions
 
 export default buildingCtrlSlice.reducer

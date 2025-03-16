@@ -3,15 +3,16 @@ import { useSelector } from 'react-redux';
 import { useThree } from '@react-three/fiber';
 
 import { textureAnisotropy } from '../../../../../Utils/Function';
-import { ConstProps, ConstMetalPergolaProps } from '../../../../../Utils/Constants';
+import { ConstMetalPergolaProps, ConstProps } from '../../../../../Utils/Constants';
 
 import { PillarModel, RectModel } from '../CommonModel';
 
-const { width, length, height, pitch } = ConstProps;
+const { width, length, height, pitch } = ConstProps
 const { pillarSize, pillarBaseSize } = ConstMetalPergolaProps;
 
 const Pillar = () => {
     const { gl } = useThree();
+    // const { width, length, height, pitch } = useSelector(state => state.buildingCtrl)
     const { metalTexture } = useSelector(state => state.texture.textureProps)
     
     const metalPillarTexture = metalTexture?.clone();

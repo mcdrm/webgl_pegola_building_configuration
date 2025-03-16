@@ -6,6 +6,7 @@ import Wall from './Wall'
 import Accessories from './Accessories'
 
 const MetalPergola = () => {
+    
     return (
         <>
             <Roof />

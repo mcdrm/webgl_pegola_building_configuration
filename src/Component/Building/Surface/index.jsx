@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { useThree } from '@react-three/fiber';
 
@@ -8,15 +8,19 @@ const Surface = () => {
     const { gl } = useThree();
     const { surfaceTexture, grassTexture } = useSelector(state => state.texture.textureProps)
     const { width, length } = useSelector(state => state.buildingCtrl)
-    console.log('{ width, length }: ', { width, length });
     const isShowGrass = useSelector(state => state.buildingCtrl.isShowGrass)
     
     const surfaceFloorTexture = surfaceTexture?.clone();
-    textureAnisotropy(gl, surfaceFloorTexture, 1, 1, 0);
     const surfaceBorderTexture = surfaceTexture?.clone();
-    textureAnisotropy(gl, surfaceBorderTexture, 15, 0.3, 0);
     const grassGroundTexture = grassTexture?.clone();
-    textureAnisotropy(gl, grassTexture, 500, 500, 0);
+
+    useEffect(() => {
+        if (gl && surfaceFloorTexture && surfaceBorderTexture && grassTexture) {
+            textureAnisotropy(gl, surfaceFloorTexture, 1, 1, 0);
+            textureAnisotropy(gl, surfaceBorderTexture, 15, 0.3, 0);
+            textureAnisotropy(gl, grassTexture, 500, 500, 0);
+        }
+    }, [gl, surfaceFloorTexture, surfaceBorderTexture, grassTexture])
     
     const overhangForPlane = 4
     const borderWidth = 0.15;
@@ -45,7 +49,7 @@ const Surface = () => {
                 <meshStandardMaterial map={surfaceBorderTexture} bumpMap={surfaceBorderTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>
             
-            <mesh name='grass-ground-panel' position={[0, -0.005, 0]} rotation={[-Math.PI / 2, 0, 0]} visible={isShowGrass}>
+            <mesh name='grass-ground-panel' receiveShadow position={[0, -0.005, 0]} rotation={[-Math.PI / 2, 0, 0]} visible={isShowGrass}>
                 <circleGeometry args={[300, 60]} />
                 <meshStandardMaterial color={'#ACACAC'} map={grassGroundTexture} bumpMap={grassGroundTexture} bumpScale={0.3} metalness={0.9} />
             </mesh>

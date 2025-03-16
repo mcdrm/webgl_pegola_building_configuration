@@ -69,19 +69,9 @@ const Pillar = () => {
             new Array(2).fill("").forEach((_, index_j) => {
                 data.push({
                     pos_x: (width / 2 - pillarSize) * Math.pow(-1, index_j),
-                    pos_y: height - (index_i === 0 ? 0.83 : 0.37) + (index_i === 1 ? length / 2 * pitch / 12 : pillarSize * pitch / 12),
+                    pos_y: height - 0.85 + (index_i === 1 ? length * pitch / 12 : 0),
                     pos_z: (length / 2 - pillarSize / 2) * Math.pow(-1, 0) * (index_i === 0 ? 1 : -1),
                     angle: [0, (index_j === 0 ? Math.PI : 0), 0]
-                })
-            })
-        })
-        new Array(2).fill("").forEach((_, index_i) => {
-            new Array(2).fill("").forEach((_, index_j) => {
-                data.push({
-                    pos_x: (width / 2 - pillarSize / 2) * Math.pow(-1, index_j),
-                    pos_y: height - (index_i === 0 ? 0.55 : 0.2) + (index_i === 1 ? length * pitch / 12 : pillarSize * pitch / 12),
-                    pos_z: (length / 2 - pillarSize) * Math.pow(-1, 0) * (index_i === 0 ? 1 : -1),
-                    angle: [0, (index_i === 0 ? Math.PI / 2 : -Math.PI / 2), 0]
                 })
             })
         })
@@ -93,7 +83,7 @@ const Pillar = () => {
         <>
             {PillarModelInfoArr.map((item, index) => <RectModel key={`pillar-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} map={woodPillarTexture} />)}
             {PillarBaseModelInfoArr.map((item, index) => <RectModel key={`pillar-base-model-${index}`} modelSize={[item.width, item.length, item.height]} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={[Math.PI / 2, 0, 0]} map={woodPillarTexture} metalness={0.9} />)}
-            {/* {PillarCorbelModelInfoArr.map((item, index) => <PillarCorbelModel key={`pillar-cobel-model-${index}`} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.angle} map={woodCorbelTexture} />)} */}
+            {PillarCorbelModelInfoArr.map((item, index) => <PillarCorbelModel key={`pillar-cobel-model-${index}`} position={[item.pos_x, item.pos_y, item.pos_z]} rotation_1={item.angle} map={woodCorbelTexture} />)}
         </>
     )
 }
