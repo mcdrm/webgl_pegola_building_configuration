@@ -37,9 +37,15 @@ export const buildingCtrlSlice = createSlice({
         setBuildingDimension: (state, action) => {
             state[Object.keys(action.payload)[0]] = action.payload[Object.keys(action.payload)[0]];
         },
+        setInitBuildingSize: (state, action) => {
+            state.width = action.payload.width;
+            state.length = action.payload.length;
+            state.height = action.payload.height;
+            state.pitch = action.payload.pitch;
+        }
     }
 })
 
-export const { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsBuildingOnly, setIsShowGrass, setBuildingDimension }= buildingCtrlSlice.actions
+export const { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsBuildingOnly, setIsShowGrass, setBuildingDimension, setInitBuildingSize }= buildingCtrlSlice.actions
 
 export default buildingCtrlSlice.reducer

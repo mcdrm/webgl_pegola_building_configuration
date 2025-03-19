@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 
-import { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsBuildingOnly, setIsShowGrass, setBuildingDimension } from "../../Redux/Features/BuildingCtrl/buildingCtrlSlice";
+import { setBuildingType, setIsShowBg, setIsCamAutoRotate, setIsBuildingOnly, setIsShowGrass, setBuildingDimension, setInitBuildingSize } from "../../Redux/Features/BuildingCtrl/buildingCtrlSlice";
 import { SvgBuilding, SvgFrameOnly, SvgGrass, SvgImage, SvgRotate } from "../../Utils/SvgSource"
+import { useEffect } from "react";
 
 const ControlPanel = () => {
     const dispatch = useDispatch();
@@ -31,6 +32,16 @@ const ControlPanel = () => {
         const { name, value } = e.target;
         dispatch(setBuildingDimension({ [name]: Number(value) }))
     }
+
+    useEffect(() => {
+        const initSize = {
+            width: 6,
+            length: 4,
+            height: 2.5,
+            pitch: 1,
+        }
+        dispatch(setInitBuildingSize(initSize));
+    }, [buildingType])
     
     return (
         <div className="building-controller">

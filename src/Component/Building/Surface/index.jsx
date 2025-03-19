@@ -8,6 +8,7 @@ const Surface = () => {
     const { gl } = useThree();
     const { surfaceTexture, grassTexture } = useSelector(state => state.texture.textureProps)
     const { width, length } = useSelector(state => state.buildingCtrl)
+    console.log({ width, length});
     const isShowGrass = useSelector(state => state.buildingCtrl.isShowGrass)
     
     const surfaceFloorTexture = surfaceTexture?.clone();
