@@ -68,7 +68,7 @@ const ControlPanel = () => {
                     <SvgRotate color={isCamAutoRotate ? '#0066FF' : '#3C3C3C'} />
                 </div>
                 <div className="vl" />
-                <div className={isFrameOnly ? "select-item isSelected" : "select-item"} onClick={() => handleOptionClick('frame-only')}>
+                <div className={isFrameOnly ? "select-item isSelected" : "select-item isDisabled"} onClick={() => handleOptionClick('frame-only')}>
                     <span>Building only</span>
                     <SvgFrameOnly color={isFrameOnly ? '#0066FF' : '#3C3C3C'} />
                 </div>
