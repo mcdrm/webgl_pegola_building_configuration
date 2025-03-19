@@ -16,7 +16,7 @@ const Env = () => {
                 files={'/assets/env/env.hdr'}
                 background
                 backgroundIntensity={5}
-                backgroundBlurriness={isShowBg ? 0 : 1}
+                backgroundBlurriness={isShowBg ? 0 : 0.65}
                 ground={isShowBg ? { height: 30, radius: 350, scale: 25 } : null}
             />
             <OrbitControls
