@@ -67,25 +67,27 @@ const ControlPanel = () => {
                     <SvgGrass color={isShowGrass ? '#0066FF' : '#3C3C3C'} />
                 </button>
             </div>
-            <div className="side-section">
-                <div className="size-item">
-                    <p>width</p>
-                    <input type="range" name="width" onChange={handleDimensionChange} min="6" max="10" step="1" defaultValue="6" />
+            {buildingType === "wood" &&
+                <div className="side-section">
+                    <div className="size-item">
+                        <p>width</p>
+                        <input type="range" name="width" onChange={handleDimensionChange} min="6" max="10" step="1" defaultValue="6" />
+                    </div>
+                    <div className="size-item">
+                        <p>length</p>
+                        <input type="range" name="length" onChange={handleDimensionChange} min="4" max="8" step="1" defaultValue="4" />
+                        
+                    </div>
+                    <div className="size-item">
+                        <p>height</p>
+                        <input type="range" name="height" onChange={handleDimensionChange} min="2.5" max="4" step="0.5" defaultValue="2.5" />
+                    </div>
+                    <div className="size-item">
+                        <p>pitch</p>
+                        <input type="range" name="pitch" onChange={handleDimensionChange} min="1" max="6" step="1" defaultValue="1" />
+                    </div>
                 </div>
-                <div className="size-item">
-                    <p>length</p>
-                    <input type="range" name="length" onChange={handleDimensionChange} min="4" max="8" step="1" defaultValue="4" />
-                    
-                </div>
-                <div className="size-item">
-                    <p>height</p>
-                    <input type="range" name="height" onChange={handleDimensionChange} min="2.5" max="4" step="0.5" defaultValue="2.5" />
-                </div>
-                <div className="size-item">
-                    <p>pitch</p>
-                    <input type="range" name="pitch" onChange={handleDimensionChange} min="1" max="6" step="1" defaultValue="1" />
-                </div>
-            </div>
+            }
         </div>
     )
 }
