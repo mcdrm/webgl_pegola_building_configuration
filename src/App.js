@@ -4,7 +4,6 @@ import { InitiallyAssetsLoad } from './Utils/Function';
 
 function App() {
     InitiallyAssetsLoad();
-    
     return (
         <div className="App">
             <Component />
