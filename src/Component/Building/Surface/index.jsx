@@ -31,7 +31,7 @@ const Surface = () => {
         <>
             <mesh name='surface-panel' rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry args={[width + overhangForPlane, length + overhangForPlane]} />
-                <meshStandardMaterial map={surfaceFloorTexture} bumpMap={surfaceFloorTexture} bumpScale={0.3} />
+                <meshStandardMaterial map={surfaceFloorTexture} bumpMap={surfaceFloorTexture} bumpScale={0.3} metalness={0.3} />
             </mesh>
             <mesh position={[-(width / 2 + overhangForPlane/ 2), borderHeight / 2, 0]} rotation={[0, Math.PI / 2, 0]}>
                 <boxGeometry args={[length + overhangForPlane - borderWidth, borderHeight, borderWidth]} />
