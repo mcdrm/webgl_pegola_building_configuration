@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     buildingType: 'wood',
-    isShowBg: false,
+    isShowBg: true,
     isCamAutoRotate: false,
     isBuildingOnly: false,
     isShowGrass: false,
+    resetShadows: false,
 
     width: 6,
     length: 4,
@@ -19,6 +20,8 @@ export const buildingCtrlSlice = createSlice({
     reducers: {
         setBuildingType: (state, action) => {
             state.buildingType = action.payload;
+            // Toggle resetShadows to trigger shadow reset
+            state.resetShadows = !state.resetShadows;
         },
         setIsShowBg: state => {
             state.isShowBg = !state.isShowBg;
